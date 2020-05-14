@@ -35,20 +35,16 @@ export class UsuarioService {
      const url = URL_SERVICIOS + '/usuario' ;
      return this.http.post (url, usuario)
      .pipe(
-       map( ( resp: any) => {
-         console.log(usuario);
-         Swal.fire('Usuario creado', usuario.email, 'success' );
-         console.log(resp);
-         return resp.usuario;
-       }),
-       catchError ((err: any) => {
-        console.log(err.error.errors.message);
-        let errores = err.error.errors.message;
-        Swal.fire('Error al registrarse', errores.substring(27) , 'error' );
-        return  err.throw(err);
-        }));
-      }
-      }
-
-
-
+      map( ( resp: any) => {
+        Swal.fire('Usuario creado', usuario.email, 'success' );
+        return resp.usuario;
+      }),
+      catchError ((err: any) => {
+      console.log(err);
+      console.log(err.error.errors.message);
+      const errores = err.error.errors.message;
+      Swal.fire('Error al registrarse', errores.substring(27) , 'error' );
+      return  err.throw(err);
+      }));
+}
+}
