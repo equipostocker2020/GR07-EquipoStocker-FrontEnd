@@ -10,22 +10,21 @@ import { URL_SERVICIOS } from '../config/config';
 import {filter, map, catchError} from 'rxjs/operators';
 // sweetalert para retroalimentacion de errores.
 import Swal from 'sweetalert2';
-import { stringify } from 'querystring';
-
-
+//op map 
+import 'rxjs/add/operator/map';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-
   usuario: Usuario;
   token: string;
-
   constructor(
     public http: HttpClient,
     public router: Router
-  ) {}
+  ) {
+    this.cargarStorage();
+  }
    /**
     *
     * @param usuario
@@ -48,12 +47,11 @@ export class UsuarioService {
       return  err.throw(err);
       }));
 }
-
 /**
- * 
- * @param id 
- * @param token 
- * @param usuario 
+ *
+ * @param id
+ * @param token
+ * @param usuario
  * Funcion que se encarga de guardar parámetros en el localStorage
  * @author Stocker
  */
@@ -66,7 +64,6 @@ guardarStorage( id: string, token: string, usuario: Usuario ) {
   this.usuario = usuario;
   this.token = token;
 }
-
 /**
  * Función que se encarga de validar que exista token en el localStorage
  * Si existe lo trae y trae tambien los datos de usuario y los parsea a un JSON
@@ -74,6 +71,7 @@ guardarStorage( id: string, token: string, usuario: Usuario ) {
  * @author Stocker
  */
 cargarStorage(){
+
   if (localStorage.getItem('token')){
     this.token = localStorage.getItem('token');
     this.usuario = JSON.parse(localStorage.getItem('usuario'));
@@ -82,11 +80,17 @@ cargarStorage(){
     this.usuario = null;
   }
 }
-
 /**
- * 
- * @param usuario 
- * @param recordar 
+ * Valida que exista un token
+ */
+estaLogueado(){
+
+  return (this.token.length > 5) ? true : false;
+}
+/**
+ *
+ * @param usuario
+ * @param recordar
  * Esta funcion valida si esta tildada la opcion recordar para mostrar en el front tu email
  * Se conecta con el backend a través del servicio de Login creando un observador
  * Y muestra respuestas con retro-alimentación al cliente
@@ -99,7 +103,6 @@ login( usuario: Usuario, recordar: boolean = false ) {
   }else {
     localStorage.removeItem('email');
   }
-
   const url = URL_SERVICIOS + '/login';
   return this.http.post( url, usuario )
             .pipe(
@@ -116,13 +119,46 @@ login( usuario: Usuario, recordar: boolean = false ) {
                   return err.throw(err);
               }));
 }
-
 /**
- * Valida que exista un token
+ *
+ * @param usuario
+ * Valida url backend de actualizar usuario desde el front.
+ * @author Stocker
  */
-estaLogueado(){
+actualizarUsuario(usuario: Usuario){
+  let url = URL_SERVICIOS + '/usuario/' + usuario._id;
+  url += '?token=' + this.token;
 
-  return (this.token.length > 5) ? true : false;
+  return this.http.put(url, usuario)
+        .map((resp: any) => {
+          if (usuario._id === this.usuario._id){
+            const usuarioDB: Usuario = resp.usuario;
+            this.guardarStorage( usuarioDB._id, this.token, usuarioDB);
+          }
+          Swal.fire('Usuario Actualizado', usuario.nombre, 'success');
+          return true;
+        });
+}
+cargarUsuarios(desde: number  = 0){
+  const url = URL_SERVICIOS + '/usuario';
+
+  return this.http.get(url);
+}
+buscarUsuario(termino: string){
+  const url = URL_SERVICIOS + '/busqueda/coleccion/usuarios/' + termino;
+
+  return this.http.get(url)
+        .map((resp: any) => resp.usuarios);
+}
+borrarUsuario(id: string){
+  let url = URL_SERVICIOS + '/usuario/' + id;
+  url += '?token=' + this.token;
+
+  return this.http.delete(url)
+        .map(resp => {
+          Swal.fire('Usuario Borrado', 'El usuario fue eliminado correctamente', 'success');
+          return true;
+        });
 }
 
 }
