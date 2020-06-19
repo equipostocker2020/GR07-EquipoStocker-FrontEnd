@@ -83,6 +83,29 @@ export class ProveedoresComponent implements OnInit {
     console.log(this.proveedor);
 
   }
+
+  borrarProveedor(proveedor: Proveedor){
+    console.log(proveedor);
+
+    Swal.fire({
+      title: ' Esta seguro?',
+      text: ' Esta a punto de borrar a ' + proveedor.nombre,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6'
+    })
+    .then(borrar => {
+      console.log(borrar.value);
+      if ( borrar.value){
+
+        this._proveedorService.borrarProveedor(proveedor._id)
+                .subscribe(borrado  => {
+                  console.log(borrado);
+                  this.cargarProveedores();
+                });
+      }
+    });
+  }
   }
 
 

@@ -6,6 +6,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ProveedoresComponent } from './pages/proveedores/proveedores.component';
 import { CargarProveedorComponent } from './pages/cargar-proveedor/cargar-proveedor.component';
+import { ActualizarProveedorComponent } from './pages/actualizar-proveedor/actualizar-proveedor.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent , data: {titulo: 'Ver - Modificar Perfil'}},
   { path: 'proveedores', component: ProveedoresComponent , data: {titulo: 'Pagina de Proveedores'}},
   { path: 'proveedores/cargarproveedor', component: CargarProveedorComponent , data: {titulo: 'Cargar Nuevos Proveedores'}},
+  { path: 'proveedor/actualizarproveedor', component: ActualizarProveedorComponent , data: {titulo: 'Ver - Modificar Proveedor'}},
   { path: '**', redirectTo: '/login' }
 ];
 

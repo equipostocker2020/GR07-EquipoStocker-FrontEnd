@@ -14,7 +14,7 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ProveedoresComponent } from './pages/proveedores/proveedores.component';
 import { CargarProveedorComponent } from './pages/cargar-proveedor/cargar-proveedor.component';
-
+import { ActualizarProveedorComponent } from './pages/actualizar-proveedor/actualizar-proveedor.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { CargarProveedorComponent } from './pages/cargar-proveedor/cargar-provee
     UsuariosComponent,
     ProveedoresComponent,
     ProfileComponent,
-    CargarProveedorComponent
+    CargarProveedorComponent,
+    ActualizarProveedorComponent,
   ],
   imports: [
     BrowserModule,
