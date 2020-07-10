@@ -130,14 +130,18 @@ actualizarUsuario(usuario: Usuario){
   url += '?token=' + this.token;
 
   return this.http.put(url, usuario)
-        .map((resp: any) => {
-          if (usuario._id === this.usuario._id){
-            const usuarioDB: Usuario = resp.usuario;
-            this.guardarStorage( usuarioDB._id, this.token, usuarioDB);
-          }
-          Swal.fire('Usuario Actualizado', usuario.nombre, 'success');
-          return true;
-        });
+  .pipe(
+    map( ( resp: any) => {
+      Swal.fire('Usuario actualizado', usuario.email, 'success' );
+      return resp.usuario;
+    }),
+    catchError ((err: any) => {
+    console.log(err);
+    console.log(err.error.errors.message);
+    const errores = err.error.errors.message;
+    Swal.fire('Error al actualizar', errores.substring(27) , 'error' );
+    return  err.throw(err);
+    }));      
 }
 cargarUsuarios(desde: number  = 0){
   const url = URL_SERVICIOS + '/usuario';

@@ -11,6 +11,7 @@ import { faEdit, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
   ]
 })
 export class UsuariosComponent implements OnInit {
+  usuario: Usuario; 
   faEdit = faEdit;
   faPlus = faPlus;
   faTrash = faTrash;
@@ -18,6 +19,7 @@ export class UsuariosComponent implements OnInit {
   desde = 0;
   totalRegistros = 0;
   cargando = true;
+  token: string;
 
   constructor(
     public _usuarioService: UsuarioService,
@@ -55,6 +57,17 @@ export class UsuariosComponent implements OnInit {
     this._usuarioService.actualizarUsuario(usuario)
             .subscribe();
   }
+
+  guardarStorage(id: string, token: string, usuario: Usuario) {
+    localStorage.setItem('id', id );
+    localStorage.setItem('token', token );
+    localStorage.setItem('usuario', JSON.stringify(usuario) );
+
+    this.usuario = usuario;
+    this.token = token;
+    console.log(this.usuario);
+  }
+
   borrarUsuario(usuario: Usuario){
     console.log(usuario);
     if (usuario._id === this._usuarioService.usuario._id){

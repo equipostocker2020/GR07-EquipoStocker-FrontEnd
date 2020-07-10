@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Proveedor } from '../models/proveedor.models';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -53,10 +54,18 @@ export class ProveedorService {
     url += '?token=' + this.token;
   
     return this.http.post(url, proveedor)
-            .map ((resp: any) => {
-                Swal.fire('Proveedor creado', proveedor.nombre, 'success');
-                return resp.proveedor;
-            });
+    .pipe(
+      map( ( resp: any) => {
+        Swal.fire('Proveedor registrado', proveedor.nombre, 'success' );
+        return resp.proveedor;
+      }),
+      catchError ((err: any) => {
+      console.log(err);
+      console.log(err.error.errors.message);
+      const errores = err.error.errors.message;
+      Swal.fire('Error al registrar proveedor', errores.substring(29) , 'error' );
+      return  err.throw(err);
+      }));  
   }
   buscarProveedor(termino: string){
     const url = URL_SERVICIOS + '/busqueda/coleccion/proveedor/' + termino;
@@ -70,12 +79,18 @@ export class ProveedorService {
     url += '?token=' + this.token;
   
     return this.http.put (url, proveedor)
-        .map((resp: any) => {
-            const proveedorDB: Proveedor = resp.proveedor;
-            this.guardarStorage( proveedor._id , this.token, proveedorDB)
-            Swal.fire('Proveedor Actualizado', proveedor.nombre, 'success');
-            return true;
-        });
+    .pipe(
+      map( ( resp: any) => {
+        Swal.fire('Proveedor actualizado', proveedor.nombre, 'success' );
+        return resp.proveedor;
+      }),
+      catchError ((err: any) => {
+      console.log(err);
+      console.log(err.error.errors.message);
+      const errores = err.error.errors.message;
+      Swal.fire('Error al actualizar proveedor', errores.substring(29) , 'error' );
+      return  err.throw(err);
+      }));  
     }
   
   

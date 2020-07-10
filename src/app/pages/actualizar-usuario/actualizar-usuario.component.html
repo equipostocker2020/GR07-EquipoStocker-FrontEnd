@@ -3,7 +3,7 @@
     <div class="col-lg-7">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title subtitulo text-center">Actualizar Proveedor</h4>
+                <h4 class="card-title subtitulo text-center">Actualizar Usuario</h4>
                 <hr>
                 <!-- <h6 class="card-subtitle mt-2">made with bootstrap elements</h6> -->
                 <form ngNativeValidate #f="ngForm" (ngSubmit)="guardar(f.value)" class="form p-t-20 mt-2s">
@@ -11,30 +11,28 @@
                         <label for="exampleInputuname">Nombre</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-user"></i></div>
-                            <input [ngModel]="proveedor.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
+                            <input [ngModel]="usuario.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputApellido">Apellido</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-email"></i></div>
+                            <input [ngModel]="usuario.apellido" name="apellido" type="text" class="form-control" placeholder="Apellido">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-email"></i></div>
-                            <input [ngModel]="proveedor.email" name="email" type="email" class="form-control" placeholder="Email" required>
+                            <input [ngModel]="usuario.email" name="email" type="email" class="form-control" placeholder="Email" required>
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label for="exampleInputTelefono">CUIT</label>
+                        <label for="exampleInputEmpresa">Empresa</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-email"></i></div>
-                            <input [ngModel]="proveedor.cuit" name="cuit" type="text" class="form-control" placeholder="CUIT">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputTelefono">Telefono</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="ti-email"></i></div>
-                            <input [ngModel]="proveedor.telefono" name="telefono" type="text" class="form-control" placeholder="Telefono">
+                            <input [ngModel]="usuario.empresa" name="empresa" type="text" class="form-control" placeholder="Empresa">
                         </div>
                     </div>
 
@@ -42,20 +40,28 @@
                         <label for="exampleInputDireccion">Direccion</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-email"></i></div>
-                            <input [ngModel]="proveedor.direccion" name="direccion" type="text" class="form-control" placeholder="Direccion">
+                            <input [ngModel]="usuario.direccion" name="direccion" type="text" class="form-control" placeholder="Direccion">
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label for="exampleInputDireccion">Situacion Afip</label>
+                        <label for="exampleInputDNI">DNI</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-email"></i></div>
-                            <input [ngModel]="proveedor.situacion_afip" name="situacion_afip" type="text" class="form-control" placeholder="Situacion Afip">
+                            <input [ngModel]="usuario.dni" name="dni" type="text" class="form-control" placeholder="DNI">
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label for="exampleInputCuit">CUIT</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-email"></i></div>
+                            <input [ngModel]="usuario.cuit" name="cuit" type="text" class="form-control" placeholder="CUIT">
+                        </div>
+                    </div>
 
                     <button type="submit" class="btn btn-dark waves-effect waves-light m-r-10">Guardar</button>
-                    <button type="submit" routerLink="/proveedores" class="btn btn-dark waves-effect waves-light m-2">Cancelar</button>
+                    <button type="submit" routerLink="/usuarios" class="btn btn-dark waves-effect waves-light m-2">Cancelar</button>
                 </form>
             </div>
         </div>

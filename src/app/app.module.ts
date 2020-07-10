@@ -15,6 +15,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ProveedoresComponent } from './pages/proveedores/proveedores.component';
 import { CargarProveedorComponent } from './pages/cargar-proveedor/cargar-proveedor.component';
 import { ActualizarProveedorComponent } from './pages/actualizar-proveedor/actualizar-proveedor.component';
+import { ActualizarUsuarioComponent } from './pages/actualizar-usuario/actualizar-usuario.component';
+import { ProductosComponent } from './pages/productos/productos.component';
+import { CargarProductosComponent } from './pages/cargar-productos/cargar-productos.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { ActualizarProveedorComponent } from './pages/actualizar-proveedor/actua
     ProfileComponent,
     CargarProveedorComponent,
     ActualizarProveedorComponent,
+    ActualizarUsuarioComponent,
+    ProductosComponent,
+    CargarProductosComponent
   ],
   imports: [
     BrowserModule,

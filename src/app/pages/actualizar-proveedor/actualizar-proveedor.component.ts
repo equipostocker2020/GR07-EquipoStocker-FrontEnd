@@ -3,6 +3,7 @@ import { ProveedorService } from '../../services/proveedor.service';
 import { Proveedor } from '../../models/proveedor.models';
 import { FormsModule } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-actualizar-proveedor',
@@ -19,7 +20,8 @@ export class ActualizarProveedorComponent implements OnInit {
   constructor(
     public _proveedorService : ProveedorService,
     public _usuarioService : UsuarioService,
-  ) {
+    public router : Router
+    ) {
     this.proveedor = this._proveedorService.proveedor;
     console.log(this.proveedor);
     this._usuarioService.usuario;
@@ -66,6 +68,7 @@ export class ActualizarProveedorComponent implements OnInit {
     
       this._proveedorService.actualizarProveedor( this.proveedor)
                   .subscribe( ( resp: any ) => {
+                    this.router.navigate(['/proveedores']);
                     console.log(resp);
 
                   });
