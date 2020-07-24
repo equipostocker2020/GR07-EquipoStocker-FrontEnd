@@ -24,11 +24,11 @@
                                     <h5 class="text-center mt-2 subtitulo">Productos Registrados (<small>{{totalRegistros}}</small>)</h5>
                                 </div>
 
-                                <input #input (keyup)="buscarProducto(input.value)" type="text" class="form-control mt-4" placeholder="Buscar Productos...">
+                                <input #input (keyup)="buscarProducto(input.value)" type="text" class="form-control mt-4" placeholder="Buscar Proveedor...">
                                 <button routerLink="/productos/cargarproductos" class="btn btn-dark btn-small align-baseline buttoncontent mt-2">
-                                    <fa-icon [icon]="faPlus"></fa-icon> 
-                                Registrar nuevo producto
-                               </button>
+                                  <fa-icon [icon]="faPlus"></fa-icon>
+                              Registrar nuevo producto
+                             </button>
                             </div>
                         </div>
                     </div>
@@ -68,21 +68,21 @@
                                     {{producto.proveedor.email}}
                                 </td>
                                 <td class="text">
-                                    {{producto.stock}}
+                                    {{producto.precio}}
                                 </td>
                                 <td class="text">
-                                    $ {{producto.precio}}
+                                    $ {{producto.stock}}
                                 </td>
 
                                 <td>
-                                    <button class="btn btn-primary">
-                                        <fa-icon [icon]="faEdit"></fa-icon>
-                                    
-                                    </button>
-                                    <button  class="btn btn-danger">
-                                        <fa-icon [icon]="faTrash"></fa-icon>
-                            
-                                    </button>
+                                    <button (click)="guardarStorage(token,producto)" routerLink="/producto/actualizarproducto" class="btn btn-primary">
+                                      <fa-icon [icon]="faEdit"></fa-icon>
+
+                                  </button>
+                                    <button (click)="borrarProducto(producto)" class="btn btn-danger">
+                                      <fa-icon [icon]="faTrash"></fa-icon>
+
+                                  </button>
                                 </td>
                             </tr>
                         </tbody>

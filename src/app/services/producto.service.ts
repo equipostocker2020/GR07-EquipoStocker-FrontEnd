@@ -18,7 +18,7 @@ export class ProductoService {
   constructor(
     public http: HttpClient,
     public router: Router
-  ) { 
+  ) {
     this.cargarStorage();
   }
 
@@ -50,7 +50,7 @@ crearProducto (producto: Producto){
   let url = URL_SERVICIOS + '/producto';
   url += '?token=' + this.token;
 
-  return this.http.post (url, producto) 
+  return this.http.post (url, producto)
         .map (( resp: any ) =>{
           console.log(resp);
           Swal.fire('Producto creado', producto.nombre, 'success');
@@ -64,9 +64,33 @@ crearProducto (producto: Producto){
     return this.http.get (url);
   }
 
+  actualizarProducto(producto: Producto){
+    let url = URL_SERVICIOS + '/producto/' + producto._id;
+    url += '?token=' + this.token;
+
+    return this.http.put (url, producto)
+        .map(( resp: any) =>{
+          const productoDB: Producto = resp.producto;
+          this.guardarStorage( productoDB._id , this.token, productoDB)
+          Swal.fire('Producto Actualizado', producto.nombre, 'success')
+          return true;
+        });
+  }
+
+  borrarProducto(id:string){
+    let url = URL_SERVICIOS + '/producto/' + id;
+    url += '?token=' + this.token;
+
+    return this.http.delete(url)
+        .map(resp => {
+          Swal.fire ('Producto Borrado', 'El producto fue eliminado correctamente', 'success')
+          return true;
+        });
+  }
+
   buscarProductos(termino: string){
     const url = URL_SERVICIOS + '/busqueda/coleccion/productos/' + termino;
-  
+
     return this.http.get(url)
           .map((resp: any) => resp.productos);
   }

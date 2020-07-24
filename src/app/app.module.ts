@@ -18,6 +18,7 @@ import { ActualizarProveedorComponent } from './pages/actualizar-proveedor/actua
 import { ActualizarUsuarioComponent } from './pages/actualizar-usuario/actualizar-usuario.component';
 import { ProductosComponent } from './pages/productos/productos.component';
 import { CargarProductosComponent } from './pages/cargar-productos/cargar-productos.component';
+import { ActualizarProductoComponent } from './pages/actualizar-producto/actualizar-producto.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CargarProductosComponent } from './pages/cargar-productos/cargar-produc
     ActualizarProveedorComponent,
     ActualizarUsuarioComponent,
     ProductosComponent,
-    CargarProductosComponent
+    CargarProductosComponent,
+    ActualizarProductoComponent
   ],
   imports: [
     BrowserModule,
