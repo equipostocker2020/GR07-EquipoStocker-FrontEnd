@@ -19,6 +19,8 @@ import { ActualizarUsuarioComponent } from './pages/actualizar-usuario/actualiza
 import { ProductosComponent } from './pages/productos/productos.component';
 import { CargarProductosComponent } from './pages/cargar-productos/cargar-productos.component';
 import { ActualizarProductoComponent } from './pages/actualizar-producto/actualizar-producto.component';
+import { ClientesComponent } from './pages/cliente/cliente.component';
+import { CargarClienteComponent } from './pages/cargar-cliente/cargar-cliente.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ActualizarProductoComponent } from './pages/actualizar-producto/actuali
     ActualizarUsuarioComponent,
     ProductosComponent,
     CargarProductosComponent,
-    ActualizarProductoComponent
+    ActualizarProductoComponent,
+    ClientesComponent,
+    CargarClienteComponent
   ],
   imports: [
     BrowserModule,
