@@ -42,14 +42,6 @@ ng serve -o
 ```
 Your global Angular CLI version (10.0.6) is greater than your local
 version (9.1.5). The local Angular CLI version is used.
-
-To disable this warning use "ng config -g cli.warnings.versionMismatch false".
-
-chunk {main} main.js, main.js.map (main) 268 kB [initial] [rendered]
-chunk {polyfills} polyfills.js, polyfills.js.map (polyfills) 141 kB [initial] [rendered]
-chunk {runtime} runtime.js, runtime.js.map (runtime) 6.15 kB [entry] [rendered]
-chunk {styles} styles.js, styles.js.map (styles) 13.8 kB [initial] [rendered]
-chunk {vendor} vendor.js, vendor.js.map (vendor) 4.48 MB [initial] [rendered]
 Date: 2020-08-20T18:32:50.800Z - Hash: b77e65a9904ec5b144b1 - Time: 10951ms
 * Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ *
 : Compiled successfully.
