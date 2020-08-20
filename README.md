@@ -1,6 +1,6 @@
 # Stocker Frontend con Angular
 
-_Modelo de vistas que actua como Frontend para la aplicacion de Stocker. Construida con Angular que se comunica directamente con un API-REST montada en NodeJS.
+Modelo de vistas que actua como Frontend para la aplicacion de Stocker. Construida con Angular que se comunica directamente con un API-REST montada en NodeJS.
 
 ## Comezando 🚀
 
@@ -10,17 +10,20 @@ Mira **Deployment** para conocer como desplegar el proyecto.
 
 ## Pre-requisitos 📋
 
-_Para levantar la aplicacion localmente es necesario contar con npm y nodejs , para  comprobar que lo tengas instalado_
+_Para levantar la aplicacion localmente es necesario contar con npm, nodejs y angular/cli , para  comprobar que lo tengas instalado_
 
 ```
 npm -v
 nodejs -v
+ng --version
 ```
 **En caso de no tener instalado alguno de los pre-requisitos, links a la documentacion oficial**
 
 https://docs.npmjs.com/cli/install
 
 https://nodejs.org/es/download/
+
+https://cli.angular.io/
 
 **En caso de no tener instalado alguno de los pre-requisitos, links a la documentacion oficial**
 
@@ -66,7 +69,7 @@ app.listen(process.env.PORT || 4200);
 
 ## Despliegue 📦
 
-_Todos los cambios locales son refrescados al guardar el proyecto Angular integrado con todas sus librerias.
+Todos los cambios locales son refrescados al guardar el proyecto Angular integrado con todas sus librerias.
 
 ## Wiki 📖
 
