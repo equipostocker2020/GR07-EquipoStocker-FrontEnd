@@ -22,6 +22,9 @@ import { ActualizarProductoComponent } from './pages/actualizar-producto/actuali
 import { ClientesComponent } from './pages/cliente/cliente.component';
 import { CargarClienteComponent } from './pages/cargar-cliente/cargar-cliente.component';
 import { ActualizarClienteComponent } from './pages/actualizar-cliente/actualizar-cliente.component';
+import { PipesModule } from './components/pipes/pipes.module';
+import { FooterComponent } from './components/footer/footer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +42,8 @@ import { ActualizarClienteComponent } from './pages/actualizar-cliente/actualiza
     ActualizarProductoComponent,
     ClientesComponent,
     CargarClienteComponent,
-    ActualizarClienteComponent
+    ActualizarClienteComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,8 @@ import { ActualizarClienteComponent } from './pages/actualizar-cliente/actualiza
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    PipesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

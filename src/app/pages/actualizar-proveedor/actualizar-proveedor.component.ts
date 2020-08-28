@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ProveedorService } from '../../services/proveedor.service';
 import { Proveedor } from '../../models/proveedor.models';
-import { FormsModule } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { FileUploadService } from '../../services/file-upload.service';
 
 @Component({
   selector: 'app-actualizar-proveedor',
@@ -12,30 +13,28 @@ import { Router } from '@angular/router';
   ],
 })
 export class ActualizarProveedorComponent implements OnInit {
-   token: string;
-   proveedor: Proveedor;
-   id:string;
-
+  token: string;
+  proveedor: Proveedor;
+  id: string;
+  imagenSubir: File;
+  imagenTemp: string | ArrayBuffer;
 
   constructor(
-    public _proveedorService : ProveedorService,
-    public _usuarioService : UsuarioService,
-    public router : Router
-    ) {
+    public _proveedorService: ProveedorService,
+    public _usuarioService: UsuarioService,
+    public router: Router,
+    public _fileUpLoadService: FileUploadService
+  ) {
     this.proveedor = this._proveedorService.proveedor;
-    console.log(this.proveedor);
     this._usuarioService.usuario;
-     this.cargarStorage();
-     this.guardarStorage(this._usuarioService.usuario._id, this._usuarioService.token, this.proveedor);
+    this.cargarStorage();
+    this.guardarStorage(this._usuarioService.usuario._id, this._usuarioService.token, this.proveedor);
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
-  }
- 
-
-  cargarStorage(){
-    if (localStorage.getItem('token')){
+  cargarStorage() {
+    if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
       this.proveedor = JSON.parse(localStorage.getItem('proveedor'));
     } else {
@@ -44,35 +43,55 @@ export class ActualizarProveedorComponent implements OnInit {
     }
   }
 
-  guardarStorage( id: string,  token: string, proveedor: Proveedor ) {
-
-    localStorage.setItem('id', this._usuarioService.usuario._id );
-    localStorage.setItem('token', this._usuarioService.token );
-    localStorage.setItem('proveedor', JSON.stringify(proveedor) );
-
+  guardarStorage(id: string, token: string, proveedor: Proveedor) {
+    localStorage.setItem('id', this._usuarioService.usuario._id);
+    localStorage.setItem('token', this._usuarioService.token);
+    localStorage.setItem('proveedor', JSON.stringify(proveedor));
     this.proveedor = proveedor;
     this.token = token;
-    console.log(this.proveedor);
-
   }
 
+  guardar(proveedor: Proveedor) {
+    this.proveedor.nombre = proveedor.nombre;
+    this.proveedor.direccion = proveedor.direccion;
+    this.proveedor.cuit = proveedor.cuit;
+    this.proveedor.email = proveedor.email;
+    this.proveedor.telefono = proveedor.telefono;
+    this.proveedor.situacion_afip = proveedor.situacion_afip;
+    this._usuarioService.token = this.token;
+    this._proveedorService.actualizarProveedor(this.proveedor)
+      .subscribe((resp: any) => {
+        this.router.navigate(['/proveedores']);
+      });
+  }
 
-  guardar( proveedor: Proveedor){
-      this.proveedor.nombre = proveedor.nombre;
-      this.proveedor.direccion = proveedor.direccion;
-      this.proveedor.cuit = proveedor.cuit;
-      this.proveedor.email = proveedor.email;
-      this.proveedor.telefono = proveedor.telefono;
-      this.proveedor.situacion_afip = proveedor.situacion_afip;
-      this._usuarioService.token = this.token;
-    
-      this._proveedorService.actualizarProveedor( this.proveedor)
-                  .subscribe( ( resp: any ) => {
-                    this.router.navigate(['/proveedores']);
-                    console.log(resp);
+  subirImagen() {
+    this._fileUpLoadService
+      .actualizarFoto(this.imagenSubir, 'proveedores', this.proveedor._id)
+      .then(img => {
+        this.proveedor.img = img;
+        Swal.fire('Guardado', 'Imagen del proveedor actualizada', 'success');
+      }).catch(err => {
+        Swal.fire('Error', 'No se pudo subir la imagen', 'error');
+      });
+  }
 
-                  });
+  cambiarImagen(file: File) {
+    this.imagenSubir = file;
+    if (!file) {
+      return this.imagenTemp = null;
+    }
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      this.imagenTemp = reader.result;
+    }
+  }
 
+  eliminarStorage() {
+    localStorage.removeItem('id');
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
   }
 
 }
