@@ -15,8 +15,10 @@ import { ActualizarProductoComponent } from './pages/actualizar-producto/actuali
 import { ClientesComponent } from './pages/cliente/cliente.component';
 import { CargarClienteComponent } from './pages/cargar-cliente/cargar-cliente.component';
 import { ActualizarClienteComponent } from './pages/actualizar-cliente/actualizar-cliente.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
+  { path: 'home', component: HomeComponent , data: {titulo: 'Home'}},
   { path: 'register', component: RegisterComponent, data: {titulo: 'Registrarse en StockerApp'}},
   { path: 'login', component: LoginComponent, data: {titulo: 'Login'},  },
   { path: 'dashboard', component: DashboardComponent, data: {titulo: 'Dashboard'},  },
@@ -31,8 +33,8 @@ const routes: Routes = [
   { path: 'producto/actualizarproducto', component: ActualizarProductoComponent, data: {titulo: 'Ver - Modificar Productos'}},
   { path: 'clientes', component: ClientesComponent , data: {titulo: 'Pagina de Clientes'}},
   { path: 'clientes/cargarcliente', component: CargarClienteComponent , data: {titulo: 'Cargar nuevos clientes'}},
-  { path: 'cliente/actualizarcliente', component: ActualizarClienteComponent , data: {titulo: 'Ver - Modificar Cliente'}},
-  { path: '**', redirectTo: '/login' }
+  { path: 'cliente/actualizarcliente', component: ActualizarClienteComponent , data: {titulo: 'Ver - Modificar Cliente'}},  { path: 'cliente/actualizarcliente', component: ActualizarClienteComponent , data: {titulo: 'Ver - Modificar Cliente'}},
+  { path: '**', redirectTo: '/home' }
 ];
 
 @NgModule({
