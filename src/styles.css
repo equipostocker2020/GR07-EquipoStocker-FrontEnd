@@ -75,6 +75,7 @@ hr {
 
 .table-avatar {
     width: 100px;
+    height: 80px;
     display: block;
     margin: auto;
     border: gray 3px solid;

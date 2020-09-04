@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="col text-center">
                                         <input #input (keyup)="buscarUsuario(input.value)" type="text" class="form-control mt-4" placeholder="Buscar Usuario...">
-                                        <button routerLink="/register" class="btn btn-dark btn-small align-center buttoncontent mt-2">
+                                        <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE'" routerLink="/register" class="btn btn-dark btn-small align-center buttoncontent mt-2 ">
                                             <fa-icon [icon]="faPlus"></fa-icon>
                                             Nuevo Usuario
                                         </button>
@@ -77,7 +77,8 @@
                                     <th class="text">DNI</th>
                                     <th class="text">CUIT</th>
                                     <th class="text">Direccion</th>
-                                    <th class="text">Editar/Eliminar</th>
+                                    <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE'" class="text">Rol del usuario</th>
+                                    <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE'" class="text">Editar/Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -105,12 +106,20 @@
                                     <td class="text text-center">
                                         {{usuario.direccion}}
                                     </td>
+                                    <td class="w200" *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE'">
+                                        <select [(ngModel)]="usuario.role" name="role" class="form-control w140" (change)="cambiarRole( usuario)">
+                                            <option value="ADMIN_ROLE">ADMIN</option>
+                                            <option value="USER_ROLE">USUARIO</option>
+                                            <option value="SALES_ROLE">VENTAS</option>
+                                            <option value="DEPOSIT_ROLE">DEPOSITO</option>
+                                        </select>
+                                    </td>
                                     <td>
                                         <div class="col text-center">
-                                            <button routerLink="/usuario/actualizarusuario" (click)="guardarStorage(usuario._id, token, usuario)" class="btn btn-success">
+                                            <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE'" routerLink="/usuario/actualizarusuario" (click)="guardarStorage(usuario._id, token, usuario)" class="btn btn-success">
                                                 <fa-icon [icon]="faPencilAlt "></fa-icon>
                                             </button>
-                                            <button (click)="borrarUsuario(usuario) " class="btn btn-danger ">
+                                            <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE'" (click)="borrarUsuario(usuario) " class="btn btn-danger ">
                                                 <fa-icon [icon]="faTrash "></fa-icon>
                                             </button>
                                         </div>

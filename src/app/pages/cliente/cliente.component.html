@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="col text-center">
                                         <input #input (keyup)="buscarCliente(input.value)" type="text" class="form-control mt-4" placeholder="Buscar Cliente...">
-                                        <button routerLink="/clientes/cargarcliente" class="btn btn-dark btn-small align-center buttoncontent mt-2">
+                                        <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' " routerLink="/clientes/cargarcliente" class="btn btn-dark btn-small align-center buttoncontent mt-2">
                                             <fa-icon [icon]="faPlus"></fa-icon>
                                             Registrar nuevo Cliente
                                         </button>
@@ -76,7 +76,7 @@
                                     <th>Cuit</th>
                                     <th>Telefono</th>
                                     <th>DNI</th>
-                                    <th></th>
+                                    <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' " class="text">Editar/Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -107,10 +107,10 @@
                                     </td>
                                     <td class="text">
                                         <div class="col text-center">
-                                            <button (click)="guardarStorage(token,cliente)" routerLink="/cliente/actualizarcliente" class="btn btn-success">
+                                            <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' " (click)="guardarStorage(token,cliente)" routerLink="/cliente/actualizarcliente" class="btn btn-success">
                                                 <fa-icon [icon]="faPencilAlt"></fa-icon>
                                             </button>
-                                            <button (click)="borrarCliente(cliente)" class="btn btn-danger">
+                                            <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' " (click)="borrarCliente(cliente)" class="btn btn-danger">
                                                 <fa-icon [icon]="faTrash"></fa-icon>
                                             </button>
                                         </div>

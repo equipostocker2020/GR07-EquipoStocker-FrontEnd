@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="col text-center">
                                         <input #input (keyup)="buscarProveedor(input.value)" type="text" class="form-control mt-4" placeholder="Buscar Proveedor...">
-                                        <button routerLink="/proveedores/cargarproveedor" class="btn btn-dark btn-small buttoncontent mt-2">
+                                        <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE'" routerLink="/proveedores/cargarproveedor" class="btn btn-dark btn-small buttoncontent mt-2">
                                             <fa-icon [icon]="faPlus"></fa-icon>
                                             Nuevo Proveedor
                                         </button>
@@ -66,47 +66,46 @@
                     </div>
                     <div class=" table-responsive table-bordered ">
                         <table class="table table-dark table-hover">
-                            <thead class="thead-dark">
+                            <thead class="thead-dark text-center">
                                 <tr>
-                                    <th>Imagen</th>
-                                    <th>Nombre</th>
-                                    <th>Direccion</th>
-                                    <th>Correo</th>
-                                    <th>Cuit</th>
-                                    <th>telefono</th>
-                                    <th>AFIP</th>
-                                    <th>Editar/Eliminar</th>
+                                    <th class="pointer">Imagen</th>
+                                    <th class="text">Nombre</th>
+                                    <th class="text">Direccion</th>
+                                    <th class="text">Correo</th>
+                                    <th class="text">Cuit</th>
+                                    <th class="text">telefono</th>
+                                    <th class="text">AFIP</th>
+                                    <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">Editar/Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let proveedor of provedores">
                                     <td class="w-100">
-                                        <img class="table-avatar" [src]="proveedor.img | imagen: 'proveedores'">
-                                    </td>
-                                    <td class="text">
+                                        <img class="table-avatar" [src]="proveedor.img | imagen: 'proveedores'"></td>
+                                    <td class="text text-center">
                                         {{proveedor.nombre}}
                                     </td>
-                                    <td class="text">
+                                    <td class="text text-center">
                                         {{proveedor.direccion}}
                                     </td>
-                                    <td class="text">
+                                    <td class="text text-center">
                                         {{proveedor.email}}
                                     </td>
-                                    <td class="text">
+                                    <td class="text text-center">
                                         {{proveedor.cuit}}
                                     </td>
-                                    <td class="text">
+                                    <td class="text text-center">
                                         {{proveedor.telefono}}
                                     </td>
-                                    <td class="text">
+                                    <td class="text text-center">
                                         {{proveedor.situacion_afip}}
                                     </td>
                                     <td class="text">
                                         <div class="col text-center">
-                                            <button (click)="guardarStorage(id, token, proveedor)" routerLink="/proveedor/actualizarproveedor" class="btn btn-success" alt="Editar">
+                                            <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' " (click)="guardarStorage(id, token, proveedor)" routerLink="/proveedor/actualizarproveedor" class="btn btn-success" alt="Editar">
                                                 <fa-icon [icon]="faPencilAlt"></fa-icon>
                                             </button>
-                                            <button (click)="borrarProveedor(proveedor)" class="btn btn-danger" alt="Eliminar">
+                                            <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' " (click)="borrarProveedor(proveedor)" class="btn btn-danger" alt="Eliminar">
                                                 <fa-icon [icon]="faTrash"></fa-icon>
                                             </button>
                                         </div>
