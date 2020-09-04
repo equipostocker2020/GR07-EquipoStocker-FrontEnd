@@ -77,10 +77,11 @@
                                     <th class="text">Descripcion</th>
                                     <th class="text">Proveedor</th>
                                     <th class="text">Email Proveedor</th>
+                                    <th class="text">Estado Proveedor</th>
                                     <th class="text">Precio</th>
                                     <th class="text">Stock</th>
-                                    <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' " class="text">Editar/Eliminar</th>
-
+                                    <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' " class="text">Estado</th>
+                                    <th class="text">Editar</th>
 
                                 </tr>
                             </thead>
@@ -101,20 +102,29 @@
                                     <td class="text text-center ">
                                         {{producto.proveedor.email}}
                                     </td>
+                                    <td class="text text-center ">
+                                        {{producto.proveedor.estado}}
+                                    </td>
                                     <td class="text text-center">
                                         $ {{producto.precio}}
                                     </td>
                                     <td class="text text-center">
                                         {{producto.stock}}
                                     </td>
+                                    <td class="w200">
+                                        <select [(ngModel)]="producto.estado" name="role" class="form-control w140" (change)="cambiarEstado(producto)">
+                                        <option value="ACTIVO">ACTIVO</option>
+                                        <option value="INACTIVO">INACTIVO</option>
+                                    </select>
+                                    </td>
                                     <td>
                                         <div class="col text-center">
                                             <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' " (click)="guardarStorage(token,producto)" routerLink="/producto/actualizarproducto" class="btn btn-success">
                                                 <fa-icon [icon]="faPencilAlt"></fa-icon>
                                             </button>
-                                            <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' " (click)="borrarProducto(producto)" class="btn btn-danger">
+                                            <!-- <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' " (click)="borrarProducto(producto)" class="btn btn-danger">
                                                 <fa-icon [icon]="faTrash"></fa-icon>
-                                            </button>
+                                            </button> -->
                                         </div>
                                     </td>
                                 </tr>

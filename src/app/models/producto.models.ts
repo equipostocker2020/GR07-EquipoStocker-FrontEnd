@@ -13,6 +13,7 @@ export class Producto {
         public proveedor?: Proveedor,
         public img?: string,
         public _id?: string,
+        public estado?: string,
         // tslint:disable-next-line: variable-name
     ) { }
 

@@ -70,9 +70,11 @@
                             </div>
                         </div>
                         <select formControlName="proveedor" class="form-control" required>
-                        <option value="">Seleccione proveedor</option>
-                        <option class="form-control" *ngFor="let  proveedor of proveedores" [value]="proveedor._id">
+                                             <option value="">Seleccione proveedor</option>
+                        <option class="form-control"  *ngFor="let proveedor of proveedores"  [value]="proveedor._id">
+                            <ng-template [ngIf]="proveedor.estado == 'ACTIVO'">
                             {{proveedor.nombre}}
+                        </ng-template>
                         </option>
                     </select>
                         <div class="form-group text-center m-t-20 mt-5">

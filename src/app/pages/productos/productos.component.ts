@@ -92,5 +92,9 @@ export class ProductosComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
   }
-
+  cambiarEstado(producto: Producto){
+    this._productoService.actualizarProducto(producto)
+    .subscribe ((resp: any) => {
+    });
+  }
 }

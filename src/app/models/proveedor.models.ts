@@ -14,6 +14,7 @@ export class Proveedor {
         public img?: string,
         // tslint:disable-next-line: variable-name
         public _id?: string,
+        public estado?: string,
     ) { }
 
     get imagenUrls() {

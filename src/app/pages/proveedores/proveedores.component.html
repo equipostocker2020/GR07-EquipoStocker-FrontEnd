@@ -78,7 +78,8 @@
                                     <th class="text">Cuit</th>
                                     <th class="text">telefono</th>
                                     <th class="text">AFIP</th>
-                                    <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">Editar/Eliminar</th>
+                                    <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">Estado</th>
+                                    <th class="text">Editar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -103,14 +104,21 @@
                                     <td class="text text-center">
                                         {{proveedor.situacion_afip}}
                                     </td>
-                                    <td class="text">
-                                        <div class="col text-center">
-                                            <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' " (click)="guardarStorage(id, token, proveedor)" routerLink="/proveedor/actualizarproveedor" class="btn btn-success" alt="Editar">
-                                                <fa-icon [icon]="faPencilAlt"></fa-icon>
+                                    <td class="w200">
+                                        <select [(ngModel)]="proveedor.estado" name="role" class="form-control w140" (change)="cambiarEstado(proveedor)">
+                                          <option value="ACTIVO">ACTIVO</option>
+                                          <option value="INACTIVO">INACTIVO</option>
+                                      </select>
+                                    </td>
+                                    <td class="text ">
+                                        <div class="col text-center ">
+                                            <button *ngIf="this._usuarioService.usuario.role=='ADMIN_ROLE' || this._usuarioService.usuario.role=='DEPOSIT_ROLE' " (click)="guardarStorage(id, token, proveedor) " routerLink="/proveedor/actualizarproveedor
+                                            " class="btn btn-success " alt="Editar ">
+                                                <fa-icon [icon]="faPencilAlt "></fa-icon>
                                             </button>
-                                            <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' " (click)="borrarProveedor(proveedor)" class="btn btn-danger" alt="Eliminar">
-                                                <fa-icon [icon]="faTrash"></fa-icon>
-                                            </button>
+                                            <!-- <button *ngIf="this._usuarioService.usuario.role=='ADMIN_ROLE' || this._usuarioService.usuario.role=='DEPOSIT_ROLE' " (click)="borrarProveedor(proveedor) " class="btn btn-danger " alt="Eliminar ">
+                                                <fa-icon [icon]="faTrash "></fa-icon>
+                                            </button> -->
                                         </div>
                                     </td>
                                 </tr>
