@@ -13,6 +13,7 @@ export class Cliente {
         public dni?: string,
         public img?: string,
         public _id?: string,
+        public usuario_modifica?: string,
     ) { }
 
     get imagenUrls() {

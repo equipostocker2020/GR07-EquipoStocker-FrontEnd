@@ -6,6 +6,7 @@ import { Producto } from '../../models/producto.models';
 import { Proveedor } from '../../models/proveedor.models';
 import { ProveedorService } from '../../services/proveedor.service';
 import { UsuarioService } from '../../services/usuario.service';
+import { Usuario } from '../../models/usuario.models';
 
 @Component({
   selector: 'app-cargar-productos',
@@ -17,6 +18,7 @@ export class CargarProductosComponent implements OnInit {
   forma: FormGroup;
   proveedores: Proveedor[] = [];
   producto: Producto;
+  usuario_modifica: Usuario;
 
   constructor(
     public _productoService: ProductoService,
@@ -35,9 +37,10 @@ export class CargarProductosComponent implements OnInit {
     this.forma = new FormGroup({
       nombre: new FormControl(null, Validators.required),
       descripcion: new FormControl(null, Validators.required),
-      stock: new FormControl(null, [Validators.required, Validators.email]),
+      stock: new FormControl(null, [Validators.required, Validators.required]),
       precio: new FormControl(null, Validators.required),
       proveedor: new FormControl(null, Validators.required),
+      usuario_modifica: new FormControl(null, Validators.required)
     });
 
     this.forma.setValue({
@@ -46,6 +49,7 @@ export class CargarProductosComponent implements OnInit {
       stock: '',
       precio: '',
       proveedor: '',
+      usuario_modifica: '',
     });
   }
   registrarProducto() {
@@ -60,6 +64,7 @@ export class CargarProductosComponent implements OnInit {
       this.forma.value.stock,
       this.forma.value.precio,
       this.forma.value.proveedor,
+      this._usuarioService.usuario._id,
     );
     this._productoService.crearProducto(producto)
       .subscribe(resp => {

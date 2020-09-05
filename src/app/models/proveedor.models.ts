@@ -15,6 +15,7 @@ export class Proveedor {
         // tslint:disable-next-line: variable-name
         public _id?: string,
         public estado?: string,
+        public usuario_modifica?: string,
     ) { }
 
     get imagenUrls() {

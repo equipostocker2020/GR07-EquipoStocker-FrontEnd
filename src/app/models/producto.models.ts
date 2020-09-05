@@ -1,5 +1,6 @@
 import { Proveedor } from './proveedor.models';
 import { URL_SERVICIOS } from '../config/config';
+import { Usuario } from './usuario.models';
 
 const url = URL_SERVICIOS;
 
@@ -14,6 +15,7 @@ export class Producto {
         public img?: string,
         public _id?: string,
         public estado?: string,
+        public usuario?: Usuario,
         // tslint:disable-next-line: variable-name
     ) { }
 
