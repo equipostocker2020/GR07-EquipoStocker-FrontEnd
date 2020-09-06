@@ -7,6 +7,7 @@ import { Proveedor } from 'src/app/models/proveedor.models';
 import { ProveedorService } from 'src/app/services/proveedor.service';
 import { FileUploadService } from '../../services/file-upload.service';
 import Swal from 'sweetalert2';
+import { Usuario } from 'src/app/models/usuario.models';
 
 @Component({
   selector: 'app-actualizar-producto',
@@ -22,6 +23,7 @@ export class ActualizarProductoComponent implements OnInit {
   proveedores: Proveedor[] = [];
   imagenSubir: File;
   imagenTemp: string | ArrayBuffer;
+  usuario: Usuario;
 
   constructor(
     public _productoService: ProductoService,
@@ -68,6 +70,7 @@ export class ActualizarProductoComponent implements OnInit {
     this.producto.stock = producto.stock;
     this.producto.precio = producto.precio;
     this.producto.proveedor = producto.proveedor;
+    this.producto.usuario = this._usuarioService.usuario;
     this._usuarioService.token = this.token;
     this._productoService.actualizarProducto(this.producto)
       .subscribe((resp: any) => {

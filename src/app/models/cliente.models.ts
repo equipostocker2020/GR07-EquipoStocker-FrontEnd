@@ -1,4 +1,5 @@
 import { URL_SERVICIOS } from '../config/config';
+import { Usuario } from './usuario.models';
 
 const url = URL_SERVICIOS;
 export class Cliente {
@@ -11,9 +12,9 @@ export class Cliente {
         public cuit?: string,
         public telefono?: string,
         public dni?: string,
+        public usuario?: Usuario,
         public img?: string,
         public _id?: string,
-        public usuario_modifica?: string,
     ) { }
 
     get imagenUrls() {

@@ -112,8 +112,7 @@
                                     </td>
                                     <td class="text ">
                                         <div class="col text-center ">
-                                            <button *ngIf="this._usuarioService.usuario.role=='ADMIN_ROLE' || this._usuarioService.usuario.role=='DEPOSIT_ROLE' " (click)="guardarStorage(id, token, proveedor) " routerLink="/proveedor/actualizarproveedor
-                                            " class="btn btn-success " alt="Editar ">
+                                            <button *ngIf="this._usuarioService.usuario.role=='ADMIN_ROLE' || this._usuarioService.usuario.role=='DEPOSIT_ROLE' " (click)="guardarStorage(id, token, proveedor) " routerLink="/proveedor/actualizarproveedor" class="btn btn-success " alt="Editar ">
                                                 <fa-icon [icon]="faPencilAlt "></fa-icon>
                                             </button>
                                             <!-- <button *ngIf="this._usuarioService.usuario.role=='ADMIN_ROLE' || this._usuarioService.usuario.role=='DEPOSIT_ROLE' " (click)="borrarProveedor(proveedor) " class="btn btn-danger " alt="Eliminar ">

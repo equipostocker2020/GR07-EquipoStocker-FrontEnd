@@ -18,7 +18,7 @@ export class CargarProductosComponent implements OnInit {
   forma: FormGroup;
   proveedores: Proveedor[] = [];
   producto: Producto;
-  usuario_modifica: Usuario;
+  usuario: Usuario;
 
   constructor(
     public _productoService: ProductoService,
@@ -40,7 +40,7 @@ export class CargarProductosComponent implements OnInit {
       stock: new FormControl(null, [Validators.required, Validators.required]),
       precio: new FormControl(null, Validators.required),
       proveedor: new FormControl(null, Validators.required),
-      usuario_modifica: new FormControl(null, Validators.required)
+      usuario: new FormControl(null, Validators.required)
     });
 
     this.forma.setValue({
@@ -49,7 +49,7 @@ export class CargarProductosComponent implements OnInit {
       stock: '',
       precio: '',
       proveedor: '',
-      usuario_modifica: '',
+      usuario: this._usuarioService.usuario,
     });
   }
   registrarProducto() {
@@ -64,7 +64,7 @@ export class CargarProductosComponent implements OnInit {
       this.forma.value.stock,
       this.forma.value.precio,
       this.forma.value.proveedor,
-      this._usuarioService.usuario._id,
+      this.forma.value.usuario,
     );
     this._productoService.crearProducto(producto)
       .subscribe(resp => {

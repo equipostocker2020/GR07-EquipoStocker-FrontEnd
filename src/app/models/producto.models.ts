@@ -12,10 +12,10 @@ export class Producto {
         public stock?: String,
         public precio?: string,
         public proveedor?: Proveedor,
-        public img?: string,
+        public usuario?: Usuario,
+        public img?: String,
         public _id?: string,
         public estado?: string,
-        public usuario?: Usuario,
         // tslint:disable-next-line: variable-name
     ) { }
 
