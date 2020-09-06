@@ -55,6 +55,8 @@ export class ActualizarClienteComponent implements OnInit {
     this.token = token;
   }
 
+
+
   guardar(cliente: Cliente) {
     this.cliente.nombre = cliente.nombre;
     this.cliente.apellido = cliente.apellido;
