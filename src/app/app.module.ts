@@ -25,6 +25,8 @@ import { ActualizarClienteComponent } from './pages/actualizar-cliente/actualiza
 import { PipesModule } from './components/pipes/pipes.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
+import { PedidosComponent } from './pages/pedidos/pedidos.component';
+import { CargarPedidosComponent } from './pages/cargar-pedidos/cargar-pedidos.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { HomeComponent } from './components/home/home.component';
     CargarClienteComponent,
     ActualizarClienteComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    PedidosComponent,
+    CargarPedidosComponent,
   ],
   imports: [
     BrowserModule,

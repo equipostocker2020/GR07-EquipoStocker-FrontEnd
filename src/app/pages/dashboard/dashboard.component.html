@@ -10,7 +10,7 @@
                     <a class="nav-link" href="/home">Home </a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    <a class="nav-link" href="/dashboard">Dashboard </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/usuarios">Usuarios</a>
@@ -24,13 +24,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/clientes">Clientes</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pedidos">Pedidos</a>
+                </li>
             </ul>
             <div class="dropdown">
                 <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-label="Third group">
-                    <img [src]="imgUrl" width="35" height="35" class="d-inline-block align-top" alt="">
+                    <img [src]="_usuarioService.usuario.img | imagen: 'usuarios'" width="35" height="35"
+                        class="d-inline-block align-top" alt="">
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#">{{usuario.email}}</a>
+                    <a class="dropdown-item" href="#">{{_usuarioService.usuario.email}}</a>
                     <a class="dropdown-item" href="/profile">Ver Perfil</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/login" (click)="eliminarStorage()">Salir</a>
