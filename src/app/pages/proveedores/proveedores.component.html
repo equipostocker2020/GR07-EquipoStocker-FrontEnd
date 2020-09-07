@@ -83,7 +83,7 @@
                                     <th class="text">AFIP</th>
                                     <th class="text">Modificado por</th>
                                     <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">Estado</th>
-                                    <th class="text">Editar</th>
+                                    <th class="text" *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">Editar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -111,7 +111,7 @@
                                     <td class="text text-center">
                                         {{proveedor.usuario.email}}
                                     </td>
-                                    <td class="w200">
+                                    <td class="w200" *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">
                                         <select [(ngModel)]="proveedor.estado" name="role" class="form-control w140" (change)="cambiarEstado(proveedor)">
                                           <option value="ACTIVO">ACTIVO</option>
                                           <option value="INACTIVO">INACTIVO</option>

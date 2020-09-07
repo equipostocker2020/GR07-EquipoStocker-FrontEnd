@@ -15,6 +15,7 @@ export class Cliente {
         public usuario?: Usuario,
         public img?: string,
         public _id?: string,
+        public estado?: string
     ) { }
 
     get imagenUrls() {

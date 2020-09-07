@@ -105,4 +105,10 @@ export class ClientesComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
   }
+
+  cambiarEstado(cliente: Cliente){
+    this._clienteService.actualizarCliente(cliente)
+    .subscribe ((resp: any) => {
+    });
+  }
 }

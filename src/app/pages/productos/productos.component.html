@@ -85,7 +85,7 @@
                                     <th class="text">Stock</th>
                                     <th class="text">Modificado por</th>
                                     <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' " class="text">Estado</th>
-                                    <th class="text">Editar</th>
+                                    <th class="text" *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">Editar</th>
 
 
                                 </tr>
@@ -119,7 +119,7 @@
                                     <td class="text text-center">
                                         {{producto.usuario.email}}
                                     </td>
-                                    <td class="w200">
+                                    <td class="w200" *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">
                                         <select [(ngModel)]="producto.estado" name="role" class="form-control w140" (change)="cambiarEstado(producto)">
                                         <option value="ACTIVO">ACTIVO</option>
                                         <option value="INACTIVO">INACTIVO</option>

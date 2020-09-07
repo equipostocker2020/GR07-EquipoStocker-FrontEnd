@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit {
       .subscribe((resp: any) => {
         for (const index of resp.usuarios) {
           if (index._id === this.usuario._id) {
-            if (resp.usuarios[1].img === this.usuario.img) {
+            if (resp.usuarios[0].img === this.usuario.img) {
               this.usuario.img = this.usuario.img;
             } else {
               console.log(index.img);
