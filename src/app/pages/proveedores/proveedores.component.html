@@ -81,6 +81,7 @@
                                     <th class="text">Cuit</th>
                                     <th class="text">telefono</th>
                                     <th class="text">AFIP</th>
+                                    <th class="text">Modificado por</th>
                                     <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">Estado</th>
                                     <th class="text">Editar</th>
                                 </tr>
@@ -106,6 +107,9 @@
                                     </td>
                                     <td class="text text-center">
                                         {{proveedor.situacion_afip}}
+                                    </td>
+                                    <td class="text text-center">
+                                        {{proveedor.usuario.email}}
                                     </td>
                                     <td class="w200">
                                         <select [(ngModel)]="proveedor.estado" name="role" class="form-control w140" (change)="cambiarEstado(proveedor)">

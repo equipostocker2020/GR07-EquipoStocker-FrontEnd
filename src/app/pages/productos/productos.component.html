@@ -117,7 +117,7 @@
                                         {{producto.stock}}
                                     </td>
                                     <td class="text text-center">
-                                        {{producto.usuario}}
+                                        {{producto.usuario.email}}
                                     </td>
                                     <td class="w200">
                                         <select [(ngModel)]="producto.estado" name="role" class="form-control w140" (change)="cambiarEstado(producto)">

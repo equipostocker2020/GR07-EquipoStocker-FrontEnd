@@ -44,100 +44,100 @@
     </nav>
 </section>
 <div class="container m-5">
-<section>
-    <div class="container py-4">
-        <div class="row py-4">
-            <div class="col-md-12 py-4">
+    <section>
+        <div class="container py-4">
+            <div class="row py-4">
+                <div class="col-md-12 py-4">
 
 
-                <div class="row animated fadeIn">
-                    <div class="col-12">
+                    <div class="row animated fadeIn">
+                        <div class="col-12">
 
-                        <div class="card">
-                            <div class="card-title">
-                                <h3 class="text-center mt-2 subtitulo"> Gestion de Pedidos </h3>
-                                <hr>
-                            </div>
-                            <div class="card-body">
-                                <div class="">
-
-
-                                    <h5 class="text-center mt-2 subtitulo">Pedidos Registrados (<small>{{totalRegistros}}</small>)</h5>
+                            <div class="card">
+                                <div class="card-title">
+                                    <h3 class="text-center mt-2 subtitulo"> Gestion de Pedidos </h3>
+                                    <hr>
                                 </div>
+                                <div class="card-body">
+                                    <div class="">
 
-                                <input #input (keyup)="buscarPedido(input.value)" type="text" class="form-control mt-4" placeholder="Buscar Pedidos...">
-                                <button routerLink="/pedidos/cargarpedido" class="btn btn-dark btn-small align-baseline buttoncontent mt-2">
+
+                                        <h5 class="text-center mt-2 subtitulo">Pedidos Registrados (<small>{{totalRegistros}}</small>)</h5>
+                                    </div>
+
+                                    <input #input (keyup)="buscarPedido(input.value)" type="text" class="form-control mt-4" placeholder="Buscar Pedidos...">
+                                    <button routerLink="/pedidos/cargarpedido" class="btn btn-dark btn-small align-baseline buttoncontent mt-2">
                                   <fa-icon [icon]="faPlus"></fa-icon>
                               Registrar nuevo pedido
                              </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="table-responsive table-bordered">
-                    <table class="table color-bordered-table info-bordered-table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Número de Pedido</th>
-                                <th>Cliente</th>
-                                <th>Productos</th>
-                                <th>Cantidad</th>
-                                <th>Precio</th>
-                                <th>Total</th>
-                                <th>Estado</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let pedido of pedidos">
+                    <div class="table-responsive table-bordered">
+                        <table class="table color-bordered-table info-bordered-table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Número de Pedido</th>
+                                    <th>Cliente</th>
+                                    <th>Productos</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Total</th>
+                                    <th>Estado</th>
+                                    <th class="text">Modificado por</th>
+                                    <th class="text">Editar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let pedido of pedidos">
 
-                                <td class="text">
-                                    {{pedido.numero_pedido}}
-                                </td>
-                                <td class="text">
-                                    {{pedido.cliente.nombre}}
-                                </td>
-                                <td class="text">
-                                    {{pedido.producto.nombre}}
-                                </td>
-                                <td class="text">
-                                    x {{pedido.cantidad}}
-                                </td>
-                                <td class="text">
-                                    $ {{pedido.producto.precio}}
-                                </td>
-                                <td class="text">
-                                    $ {{pedido.total}}
-                                </td>
-
-                                <td>
-                                    <select [(ngModel)]="pedido.estado" name="role" class="form-control">
+                                    <td class="text">
+                                        {{pedido.numero_pedido}}
+                                    </td>
+                                    <td class="text">
+                                        {{pedido.cliente.nombre}}
+                                    </td>
+                                    <td class="text">
+                                        {{pedido.producto.nombre}}
+                                    </td>
+                                    <td class="text">
+                                        x {{pedido.cantidad}}
+                                    </td>
+                                    <td class="text">
+                                        $ {{pedido.producto.precio}}
+                                    </td>
+                                    <td class="text">
+                                        $ {{pedido.total}}
+                                    </td>
+                                    <td>
+                                        <select [(ngModel)]="pedido.estado" name="role" class="form-control">
                                         <option value="preparación">Preparación</option>
                                         <option value="enviado">Enviado</option>
                                         <option value="cancelado">Cancelado</option>
-                                
                                     </select>
-                                </td>
-                                
-
-                                <td>
-                                    <button (click)="guardarStorage(token,pedido)" routerLink="/pedido/actualizarpedido" class="btn btn-primary">
+                                    </td>
+                                    <td class="text text-center">
+                                        {{pedido.usuario.email}}
+                                    </td>
+                                    <td>
+                                        <button (click)="guardarStorage(token,pedido)" routerLink="/pedido/actualizarpedido" class="btn btn-primary">
                                       <fa-icon [icon]="faEdit"></fa-icon>
 
                                   </button>
-                                    <button (click)="borrarPedido(pedido)" class="btn btn-danger">
+                                        <button (click)="borrarPedido(pedido)" class="btn btn-danger">
                                       <fa-icon [icon]="faTrash"></fa-icon>
 
                                   </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 </div>

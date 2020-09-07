@@ -4,8 +4,6 @@ import Swal from 'sweetalert2';
 import { ProductoService } from '../../services/producto.service';
 import { faEdit, faTrash, faPlus, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { UsuarioService } from '../../services/usuario.service';
-import { Usuario } from 'src/app/models/usuario.models';
-
 
 @Component({
   selector: 'app-productos',
@@ -24,7 +22,6 @@ export class ProductosComponent implements OnInit {
   cargando = true;
   producto: Producto;
   token: string;
-  usuario: Usuario;
 
   constructor(
     public _productoService: ProductoService,
