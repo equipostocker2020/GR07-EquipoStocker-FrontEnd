@@ -15,6 +15,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class PedidosComponent implements OnInit {
 
+  
   faEdit = faEdit;
   faTrash = faTrash;
   faPlus = faPlus;
@@ -56,8 +57,8 @@ export class PedidosComponent implements OnInit {
 
     Swal.fire({
       title: ' Esta seguro?',
-      text: ' Esta a punto de borrar el pedido N° ' + pedido.numero_pedido,
       icon: 'warning',
+      text: ' Esta a punto de borrar el pedido  N°' + pedido.numero_pedido,
       showCancelButton: true,
       confirmButtonColor: '#3085d6'
     })
@@ -67,7 +68,6 @@ export class PedidosComponent implements OnInit {
 
         this._pedidoService.borrarPedido(pedido._id)
                 .subscribe(borrado  => {
-                  console.log(borrado);
                   this.cargarPedido();
                 });
       }

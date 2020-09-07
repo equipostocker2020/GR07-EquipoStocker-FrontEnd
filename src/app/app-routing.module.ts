@@ -18,6 +18,7 @@ import { ActualizarClienteComponent } from './pages/actualizar-cliente/actualiza
 import { HomeComponent } from './components/home/home.component';
 import { CargarPedidosComponent } from './pages/cargar-pedidos/cargar-pedidos.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
+import { ActualizarPedidoComponent } from './pages/actualizar-pedido/actualizar-pedido.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent , data: {titulo: 'Home'}},
@@ -35,11 +36,14 @@ const routes: Routes = [
   { path: 'producto/actualizarproducto', component: ActualizarProductoComponent, data: {titulo: 'Ver - Modificar Productos'}},
   { path: 'clientes', component: ClientesComponent , data: {titulo: 'Pagina de Clientes'}},
   { path: 'clientes/cargarcliente', component: CargarClienteComponent , data: {titulo: 'Cargar nuevos clientes'}},
-  { path: 'cliente/actualizarcliente', component: ActualizarClienteComponent , data: {titulo: 'Ver - Modificar Cliente'}},  { path: 'cliente/actualizarcliente', component: ActualizarClienteComponent , data: {titulo: 'Ver - Modificar Cliente'}},
+  { path: 'cliente/actualizarcliente', component: ActualizarClienteComponent , data: {titulo: 'Ver - Modificar Cliente'}},
   { path: 'pedidos', component: PedidosComponent, data: {titulo: 'Pagina de Pedido'}},
-  { path: 'pedidos/cargarpedido', component: CargarPedidosComponent , data: {titulo: 'Cargar nuevos pedodps'}},
+  { path: 'pedidos/cargarpedido', component: CargarPedidosComponent , data: {titulo: 'Cargar nuevos pedidos'}},
+  { path: 'pedido/actualizarpedido', component: ActualizarPedidoComponent , data: {titulo: 'Ver - Modificar pedidos'}},
   { path: '**', redirectTo: '/home' }
 ];
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

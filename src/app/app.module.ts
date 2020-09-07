@@ -27,6 +27,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { CargarPedidosComponent } from './pages/cargar-pedidos/cargar-pedidos.component';
+import { ActualizarPedidoComponent } from './pages/actualizar-pedido/actualizar-pedido.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CargarPedidosComponent } from './pages/cargar-pedidos/cargar-pedidos.co
     HomeComponent,
     PedidosComponent,
     CargarPedidosComponent,
+    ActualizarPedidoComponent,
   ],
   imports: [
     BrowserModule,

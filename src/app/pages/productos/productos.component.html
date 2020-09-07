@@ -113,7 +113,7 @@
                                     <td class="text text-center">
                                         $ {{producto.precio}}
                                     </td>
-                                    <td class="text text-center">
+                                    <td class="text text-center" [ngClass]="{'badge badge-danger .dimension': (producto.stock <= 10 )}">
                                         {{producto.stock}}
                                     </td>
                                     <td class="text text-center">

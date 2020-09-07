@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Pedido } from '../models/pedido.models';
 import Swal from 'sweetalert2';
 import { parse } from 'path';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -50,11 +51,16 @@ crearPedido (pedido: Pedido){
   url += '?token=' + this.token;
 
   return this.http.post (url, pedido)
-        .map (( resp: any ) =>{
-          console.log(resp);
-          Swal.fire('Pedido creado');
+    .pipe(
+        map(( resp: any ) =>{
+          Swal.fire('Pedido creado', pedido.numero_pedido, 'success');
           return resp.pedido;
-        });
+        }),
+        catchError((err: any) => {
+          const errores = err.error.mensaje;
+          Swal.fire('Error', errores.substring(0), 'error');
+          return err.throw(err);
+        }));
 }
 
   cargarPedido(){
@@ -67,13 +73,19 @@ crearPedido (pedido: Pedido){
     let url = URL_SERVICIOS + '/pedido/' + pedido._id;
     url += '?token=' + this.token;
 
-    return this.http.put (url, pedido)
-        .map(( resp: any) =>{
-          const pedidoDB: Pedido= resp.pedido;
-          this.guardarStorage( pedidoDB._id , this.token, pedidoDB)
-          Swal.fire('Pedido Actualizado', 'success')
-          return true;
-        });
+    return this.http.put(url, pedido)
+      .pipe(
+        map((resp: any) => {
+          Swal.fire('Pedido actualizado', pedido.numero_pedido, 'success');
+          return resp.proveedor;
+        }),
+        catchError((err: any) => {
+          console.log(err);
+          console.log(err.error.errors.message);
+          const errores = err.error.errors.message;
+          Swal.fire('Error al actualizar pedido', errores.substring(29), 'error');
+          return err.throw(err);
+        }));
   }
 
   borrarPedido(id:string){

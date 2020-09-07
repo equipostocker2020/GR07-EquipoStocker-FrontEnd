@@ -10,7 +10,7 @@ export class Pedido {
         public usuario?: Usuario,
         public estado?: String,
         public total?:Number,
-        public numero_pedido?: String,
+        public numero_pedido?: string,
         public _id?: string,
 
     ){}
