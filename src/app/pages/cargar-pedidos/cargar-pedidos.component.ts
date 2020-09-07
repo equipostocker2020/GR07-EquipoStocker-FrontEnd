@@ -10,6 +10,7 @@ import { Cliente } from 'src/app/models/cliente.models';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { Proveedor } from 'src/app/models/proveedor.models';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { Usuario } from 'src/app/models/usuario.models';
 
 
 @Component({
@@ -27,14 +28,15 @@ export class CargarPedidosComponent implements OnInit {
   subTotal:Number;
   total:Number;
   precio ="";
+  usuario: Usuario;
 
   constructor(
     public _productoService : ProductoService,
     public _pedidoService : PedidoService,
     public router: Router,
     public _clienteService :ClienteService,
-    public _usuarioService: UsuarioService
-    
+    public _usuarioService: UsuarioService,
+
   ) { }
 
   ngOnInit() {
@@ -53,15 +55,17 @@ export class CargarPedidosComponent implements OnInit {
       cliente: new FormControl (null, Validators.required ),
       producto: new FormControl(null, Validators.required ),
       cantidad: new FormControl (null, Validators.required ),
+      usuario: new FormControl(null, Validators.required),
     } );
 
     this.forma.setValue({
       cliente: '',
       producto: '',
       cantidad: '',
+      usuario: this._usuarioService.usuario,
     });
   }
- 
+
   registrarPedido() {
     if (this.forma.invalid) {
       return;
@@ -70,8 +74,8 @@ export class CargarPedidosComponent implements OnInit {
     const pedido = new Pedido(
       this.forma.value.cliente,
       this.forma.value.producto,
-      this.forma.value.cantidad
-      
+      this.forma.value.cantidad,
+      this.forma.value.usuario,
     );
     this._pedidoService.crearPedido(pedido)
       .subscribe(resp => {

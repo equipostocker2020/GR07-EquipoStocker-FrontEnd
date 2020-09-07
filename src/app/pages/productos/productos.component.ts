@@ -42,6 +42,7 @@ export class ProductosComponent implements OnInit {
       .subscribe((resp: any) => {
         this.totalRegistros = resp.total;
         this.productos = resp.productos;
+        console.log(resp);
         this.cargando = false;
       });
   }
