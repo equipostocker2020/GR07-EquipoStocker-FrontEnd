@@ -24,8 +24,8 @@ export class ActualizarPedidoComponent implements OnInit {
   clientes: Cliente [] = [];
   id: string;
   usuario: Usuario;
-  precio:number;
-  total:number;
+  precio:any;
+  total:any;
 
   constructor(
     public _pedidoService: PedidoService,
@@ -68,13 +68,16 @@ export class ActualizarPedidoComponent implements OnInit {
     localStorage.setItem('token', this._usuarioService.token);
     localStorage.setItem('pedido', JSON.stringify(pedido));
     this.pedido = pedido;
+    this.precio = pedido.producto.precio;
+    this.total = pedido.total;
     this.token = token;
   }
 
   guardar(pedido: Pedido) {
     this.pedido.cliente = pedido.cliente;
     this.pedido.producto = pedido.producto;
-    this.pedido.cantidad = pedido.cantidad;
+    console.log(pedido.cantidad)    
+    this.pedido.cantidad = pedido.cantidad;    
     this.pedido.usuario = this._usuarioService.usuario;
     this._usuarioService.token = this.token;
     this._pedidoService.actualizarPedido(this.pedido)
@@ -93,6 +96,8 @@ export class ActualizarPedidoComponent implements OnInit {
   muestraPrecio(id : string){
     this._productoService.cargarProductosPorID(id).subscribe((resp:any) =>{
       this.precio  = resp.productos.precio;
+      console.log(resp.productos.precio)
+      console.log(this.precio)
     });
   }
 
