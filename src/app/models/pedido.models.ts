@@ -8,7 +8,7 @@ export class Pedido {
         public producto?: Producto,
         public cantidad?: Number,
         public usuario?: Usuario,
-        public estado?: String,
+        public estado?: string,
         public total?:Number,
         public numero_pedido?: string,
         public _id?: string,

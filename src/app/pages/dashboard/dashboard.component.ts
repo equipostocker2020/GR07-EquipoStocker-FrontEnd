@@ -10,6 +10,8 @@ import { HttpClient } from '@angular/common/http';
 import { ProveedorService } from '../../services/proveedor.service';
 import { ClienteService } from '../../services/cliente.service';
 import { Cliente } from '../../models/cliente.models';
+import { PedidoService } from '../../services/pedido.service';
+import { Pedido } from 'src/app/models/pedido.models';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +26,8 @@ export class DashboardComponent implements OnInit {
   proveedor: Proveedor;
   productos: Producto[] = [];
   proveedores: Proveedor [] = [];
-  clientes: Cliente [] = []
+  clientes: Cliente [] = [];
+  pedidos: Pedido [] = [];
   token: string;
   file: File;
   urlPrueba: string;
@@ -36,6 +39,7 @@ export class DashboardComponent implements OnInit {
     public _fileUpLoadService: FileUploadService,
     public _proveedorService: ProveedorService,
     public _clienteService: ClienteService,
+    public _pedidosService : PedidoService,
     public http: HttpClient,
   ) {
     this.usuario = _usuarioService.usuario;
@@ -47,6 +51,9 @@ export class DashboardComponent implements OnInit {
     });
     this._clienteService.cargarCliente().subscribe((resp: any ) => {
     this.clientes = resp.clientes;
+    });
+    this._pedidosService.cargarPedido().subscribe((resp:any) =>{
+      this.pedidos = resp.pedidos;
     });
   }
 
