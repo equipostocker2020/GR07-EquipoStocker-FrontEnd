@@ -111,7 +111,7 @@
                             </td>
 
                             <td *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">
-                                <select *ngIf="pedido.estado == 'enviado' || pedido.estado == 'preparación'" [(ngModel)]="pedido.estado" name="role" class="form-control" (change)="cambiarEstado(pedido)">
+                                <select *ngIf="pedido.estado == 'enviado' || pedido.estado == 'preparación'" [(ngModel)]="pedido.estado" name="role" class="form-control" (change)="cambiarEstado(pedido, $event.target.value)">
                                             <option value="preparación">Preparación</option>
                                             <option value="enviado">Enviado</option>
                                             <option value="cancelado">Cancelado</option>

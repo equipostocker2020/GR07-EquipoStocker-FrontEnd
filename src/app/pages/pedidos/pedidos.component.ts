@@ -109,23 +109,32 @@ export class PedidosComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
   }
-  cambiarEstado(pedido: Pedido){
-    Swal.fire({
-      title: ' Esta seguro?',
-      icon: 'warning',
-      text: ' Esta a punto de cancelar el pedido  N°' + pedido.numero_pedido,
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6'
-    })
-    .then(cambiar => {
-
-      if ( cambiar.value){
-
-        this._pedidoService.actualizarPedido(pedido)
-        .subscribe ((resp: any) => {
-        });
-      }
-    });
+  cambiarEstado(pedido: Pedido, value : string){
+    
+    if (value == 'cancelado'){
+  
+      Swal.fire({
+        title: ' Esta seguro?',
+        icon: 'warning',
+        text: ' Esta a punto de cancelar el pedido  N°' + pedido.numero_pedido,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6'
+      })
+      .then(cambiar => {
+  
+        if ( cambiar.value){
+  
+          this._pedidoService.actualizarPedido(pedido)
+          .subscribe ((resp: any) => {
+          });
+        }
+      });
+    }else{
+      this._pedidoService.actualizarPedido(pedido)
+      .subscribe ((resp: any) => {
+      });
+    }
+    
   }
 }
   

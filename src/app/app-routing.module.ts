@@ -19,6 +19,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CargarPedidosComponent } from './pages/cargar-pedidos/cargar-pedidos.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { ActualizarPedidoComponent } from './pages/actualizar-pedido/actualizar-pedido.component';
+import { ClientePedidosComponent } from './pages/cliente-pedidos/cliente-pedidos.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent , data: {titulo: 'Home'}},
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'pedidos', component: PedidosComponent, data: {titulo: 'Pagina de Pedido'}},
   { path: 'pedidos/cargarpedido', component: CargarPedidosComponent , data: {titulo: 'Cargar nuevos pedidos'}},
   { path: 'pedido/actualizarpedido', component: ActualizarPedidoComponent , data: {titulo: 'Ver - Modificar pedidos'}},
+  { path: 'cliente/clientepedido', component: ClientePedidosComponent, data: {titulo: 'Pedidos del clientes'}},
   { path: '**', redirectTo: '/home' }
 ];
 

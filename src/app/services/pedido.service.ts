@@ -70,6 +70,12 @@ crearPedido (pedido: Pedido){
     return this.http.get (url);
   }
 
+  cargarPedidoCienteID(cliente: Cliente){
+    const url = URL_SERVICIOS + '/pedido/'+ cliente._id;
+
+    return this.http.get (url);
+  }
+
   actualizarPedido(pedido: Pedido){
     let url = URL_SERVICIOS + '/pedido/' + pedido._id;
     url += '?token=' + this.token;
