@@ -43,104 +43,104 @@
         </div>
     </nav>
 </section>
-<div class="container m-5">
-    <section>
-        <div class="container py-4">
-            <div class="row py-4">
-                <div class="col-md-12 py-4">
-                    <div class="row animated fadeIn">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-title">
-                                    <h3 class="text-center mt-2 subtitulo"> Gestion de Pedidos </h3>
-                                    <hr>
-                                </div>
-                                <div class="card-body">
-                                    <div class="">
-                                        <h5 class="text-center mt-2 subtitulo">Pedidos Registrados (
-                                            <small>{{totalRegistros}}</small>)</h5>
-                                    </div>
-                                    <div class="col text-center">
-                                        <input #input (keyup)="buscarPedido(input.value)" type="text" class="form-control mt-4" placeholder="Buscar Pedidos...">
-                                        <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' " routerLink="/pedidos/cargarpedido" class="btn btn-dark btn-small align-baseline buttoncontent mt-2">
+<!-- <div class="container m-5"> -->
+<section>
+    <!-- <div class="container py-4"> -->
+    <div class="row m-2">
+        <div class="col-md-12 py-4">
+            <div class="row animated fadeIn">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-title">
+                            <h3 class="text-center mt-2 subtitulo"> Gestion de Pedidos </h3>
+                            <hr>
+                        </div>
+                        <div class="card-body">
+                            <div class="">
+                                <h5 class="text-center mt-2 subtitulo">Pedidos Registrados (
+                                    <small>{{totalRegistros}}</small>)</h5>
+                            </div>
+                            <div class="col text-center">
+                                <input #input (keyup)="buscarPedido(input.value)" type="text" class="form-control mt-4" placeholder="Buscar Pedidos...">
+                                <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' " routerLink="/pedidos/cargarpedido" class="btn btn-dark btn-small align-baseline buttoncontent mt-2">
                                             <fa-icon [icon]="faPlus"></fa-icon>
                                             Registrar nuevo pedido
                                         </button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="table-responsive table-bordered">
-                        <table class="table table-dark table-hover">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Número de Pedido</th>
-                                    <th>Cliente</th>
-                                    <th>Productos</th>
-                                    <th>Cantidad</th>
-                                    <th>Precio</th>
-                                    <th>Total</th>
-                                    <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE'">
-                                        Estado</th>
-                                    <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE'">
-                                        Editar</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let pedido of pedidos">
+            <div class="table-responsive table-bordered">
+                <table class="table table-dark table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Número de Pedido</th>
+                            <th>Cliente</th>
+                            <th>Productos</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Total</th>
+                            <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE'">
+                                Estado</th>
+                            <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE'">
+                                Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let pedido of pedidos">
 
-                                    <td class="text text-center">
-                                        {{pedido.numero_pedido}}
-                                    </td>
-                                    <td class="text text-center">
-                                        {{pedido.cliente.nombre}}
-                                    </td>
-                                    <td class="text text-center">
-                                        {{pedido.producto.nombre}}
-                                    </td>
-                                    <td class="text text-center">
-                                        {{pedido.cantidad}}
-                                    </td>
-                                    <td class="text text-center">
-                                        $ {{pedido.producto.precio}}
-                                    </td>
-                                    <td class="text text-center">
-                                        $ {{pedido.total}}
-                                    </td>
+                            <td class="text text-center">
+                                {{pedido.numero_pedido}}
+                            </td>
+                            <td class="text text-center">
+                                {{pedido.cliente.nombre}}
+                            </td>
+                            <td class="text text-center">
+                                {{pedido.producto.nombre}}
+                            </td>
+                            <td class="text text-center">
+                                {{pedido.cantidad}}
+                            </td>
+                            <td class="text text-center">
+                                $ {{pedido.producto.precio}}
+                            </td>
+                            <td class="text text-center">
+                                $ {{pedido.total}}
+                            </td>
 
-                                    <td *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">
-                                        <select *ngIf="pedido.estado == 'enviado' || pedido.estado == 'preparación'" [(ngModel)]="pedido.estado" name="role" class="form-control" (change)="cambiarEstado(pedido)">
+                            <td *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">
+                                <select *ngIf="pedido.estado == 'enviado' || pedido.estado == 'preparación'" [(ngModel)]="pedido.estado" name="role" class="form-control" (change)="cambiarEstado(pedido)">
                                             <option value="preparación">Preparación</option>
                                             <option value="enviado">Enviado</option>
                                             <option value="cancelado">Cancelado</option>
 
                                         </select>
 
-                                        <select *ngIf="pedido.estado == 'cancelado'" [(ngModel)]="pedido.estado" name="role" class="form-control">
+                                <select *ngIf="pedido.estado == 'cancelado'" [(ngModel)]="pedido.estado" name="role" class="form-control">
                                             <option disabled value="cancelado">Cancelado</option>
                                         </select>
-                                    </td>
+                            </td>
 
 
-                                    <td *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE'">
-                                        <button (click)="guardarStorage(token,pedido)" routerLink="/pedido/actualizarpedido" class="btn btn-success">
+                            <td *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE'">
+                                <button (click)="guardarStorage(token,pedido)" routerLink="/pedido/actualizarpedido" class="btn btn-success">
                                             <fa-icon [icon]="faEdit"></fa-icon>
 
                                         </button>
-                                        <!-- <button (click)="borrarPedido(pedido)" class="btn btn-danger">
+                                <!-- <button (click)="borrarPedido(pedido)" class="btn btn-danger">
                                             <fa-icon [icon]="faTrash"></fa-icon>
 
                                         </button> -->
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </section>
+    </div>
+    <!-- </div> -->
+</section>
 
-</div>
+<!-- </div> -->
