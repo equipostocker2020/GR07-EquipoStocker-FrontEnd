@@ -4,6 +4,8 @@ import { ClienteService } from '../../services/cliente.service';
 import Swal from 'sweetalert2';
 import { faEdit, faTrash, faPlus, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { UsuarioService } from '../../services/usuario.service';
+import { PedidoService } from 'src/app/services/pedido.service';
+import { Pedido } from 'src/app/models/pedido.models';
 
 @Component({
   selector: 'app-clientes',
@@ -17,6 +19,7 @@ export class ClientesComponent implements OnInit {
   faTrash = faTrash;
   faPencilAlt = faPencilAlt;
   clientes: Cliente[] = [];
+  pedidosCliente: Pedido[] = [];
   desde = 0;
   totalRegistros = 0;
   cargando = true;
@@ -24,7 +27,8 @@ export class ClientesComponent implements OnInit {
 
   constructor(
     public _clienteService: ClienteService,
-    public _usuarioService: UsuarioService
+    public _usuarioService: UsuarioService,
+    public _pedidoService: PedidoService
   ) { }
 
   ngOnInit() {
@@ -109,6 +113,14 @@ export class ClientesComponent implements OnInit {
   cambiarEstado(cliente: Cliente){
     this._clienteService.actualizarCliente(cliente)
     .subscribe ((resp: any) => {
+    });
+  }
+
+  conpruebaPedido(cliente : Cliente){
+    this._pedidoService.clientePedidos(cliente)
+    .subscribe ((resp: any) => {
+      this.pedidosCliente = resp.pedidos;
+      console.log(this.pedidosCliente)
     });
   }
 }

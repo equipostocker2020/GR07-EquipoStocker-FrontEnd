@@ -110,9 +110,23 @@ export class PedidosComponent implements OnInit {
     localStorage.removeItem('usuario');
   }
   cambiarEstado(pedido: Pedido){
-    this._pedidoService.actualizarPedido(pedido)
-    .subscribe ((resp: any) => {
+    Swal.fire({
+      title: ' Esta seguro?',
+      icon: 'warning',
+      text: ' Esta a punto de cancelar el pedido  N°' + pedido.numero_pedido,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6'
+    })
+    .then(cambiar => {
+
+      if ( cambiar.value){
+
+        this._pedidoService.actualizarPedido(pedido)
+        .subscribe ((resp: any) => {
+        });
+      }
     });
   }
-
 }
+  
+

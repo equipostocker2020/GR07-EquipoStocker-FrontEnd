@@ -6,6 +6,7 @@ import { Pedido } from '../models/pedido.models';
 import Swal from 'sweetalert2';
 import { parse } from 'path';
 import { catchError, map } from 'rxjs/operators';
+import { Cliente } from '../models/cliente.models';
 
 @Injectable({
   providedIn: 'root'
@@ -86,6 +87,13 @@ crearPedido (pedido: Pedido){
           Swal.fire('Error al actualizar pedido', errores.substring(29), 'error');
           return err.throw(err);
         }));
+  }
+
+  clientePedidos(cliente: Cliente){
+    let url = URL_SERVICIOS + '/pedido/' + cliente._id;
+    url += '?token=' + this.token;
+
+    return this.http.get(url)
   }
 
   borrarPedido(id:string){
