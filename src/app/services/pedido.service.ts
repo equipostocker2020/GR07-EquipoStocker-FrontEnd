@@ -71,7 +71,13 @@ crearPedido (pedido: Pedido){
   }
 
   cargarPedidoCienteID(cliente: Cliente){
-    const url = URL_SERVICIOS + '/pedido/'+ cliente._id;
+    const url = URL_SERVICIOS + '/pedido/cliente/'+ cliente._id;
+
+    return this.http.get (url);
+  }
+
+  cargarPedidoID(pedido: Pedido){
+    const url = URL_SERVICIOS + '/pedido/'+ pedido._id;
 
     return this.http.get (url);
   }

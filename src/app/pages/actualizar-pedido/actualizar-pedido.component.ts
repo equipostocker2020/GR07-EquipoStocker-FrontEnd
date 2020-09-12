@@ -19,6 +19,7 @@ import { PedidosComponent } from '../pedidos/pedidos.component';
 export class ActualizarPedidoComponent implements OnInit {
 
   token: string;
+  cantidad2:number;
   pedido: Pedido;
   productos: Producto [] = [];
   clientes: Cliente [] = [];
@@ -50,6 +51,12 @@ export class ActualizarPedidoComponent implements OnInit {
     this._clienteService.cargarCliente()
     .subscribe((resp: any) => {
       this.clientes = resp.clientes;
+    });
+
+    this._pedidoService.cargarPedidoID(this.pedido)
+    .subscribe((resp: any) => {
+      this.cantidad2 = resp.pedido.cantidad;
+      console.log(this.cantidad2)
     });
    }
 
@@ -93,15 +100,19 @@ export class ActualizarPedidoComponent implements OnInit {
     localStorage.removeItem('usuario');
   }
 
+  instanciarCantidad
+
   muestraPrecio(id : string){
     this._productoService.cargarProductosPorID(id).subscribe((resp:any) =>{
       this.precio  = resp.productos.precio;
-      console.log(resp.productos.precio)
-      console.log(this.precio)
+      console.log(this.cantidad2 +" "+ this.precio)
+      this.total = this.cantidad2 * this.precio;
     });
+    
   }
 
   muestraTotal(cantidad : number){
+    this.cantidad2 = cantidad;
     this.total = cantidad * this.precio;
   }
 }
