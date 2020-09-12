@@ -124,7 +124,7 @@
                             </td>
 
 
-                            <td *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE'">
+                            <td *ngIf="(this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE') && (pedido.estado == 'enviado' || pedido.estado == 'preparación')">
                                 <button (click)="guardarStorage(token,pedido)" routerLink="/pedido/actualizarpedido" class="btn btn-success">
                                             <fa-icon [icon]="faEdit"></fa-icon>
 
