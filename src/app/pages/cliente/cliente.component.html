@@ -84,7 +84,7 @@
                             <th class="text">Modificado por</th>
                             <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' ">Estado</th>
                             <th>Ver Pedidos</th>
-                            <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' " class="text">Editar/Eliminar</th>
+                            <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' " class="text">Editar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -125,9 +125,7 @@
 
                             <td class="text text-center">
                                 <div class="col text">
-                                        <a class="btn btn-outline-primary "
-                                        (click)="compruebaPedido(token,cliente)"
-                                        >Ver Pedidos</a>
+                                    <a class="btn btn-outline-primary " (click)="compruebaPedido(token,cliente)">Ver Pedidos</a>
                                 </div>
                             </td>
 
@@ -136,9 +134,9 @@
                                     <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' " (click)="guardarStorage(token,cliente)" routerLink="/cliente/actualizarcliente" class="btn btn-success">
                                                 <fa-icon [icon]="faPencilAlt"></fa-icon>
                                             </button>
-                                    <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' " (click)="borrarCliente(cliente)" class="btn btn-danger">
+                                    <!-- <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' " (click)="borrarCliente(cliente)" class="btn btn-danger">
                                                 <fa-icon [icon]="faTrash"></fa-icon>
-                                            </button>
+                                            </button> -->
                                 </div>
                             </td>
                         </tr>
