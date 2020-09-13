@@ -55,15 +55,19 @@
 
                         <select formControlName="cliente" class="form-control" required> 
                         <option value="">Seleccione Cliente</option>
-                        <option class="form-control" *ngFor="let  cliente of clientes" [value]="cliente._id">
+                        <option class="form-control"  *ngFor="let cliente of clientes"  [value]="cliente._id">
+                            <ng-template [ngIf]="cliente.estado != 'INACTIVO'">
                             {{cliente.nombre}}
+                        </ng-template>
                         </option>
                     </select>
                         <br>
                         <select formControlName="producto" class="form-control" (change)="muestraPrecio($event.target.value)"> 
                         <option value="">Seleccione Producto</option>
-                        <option class="form-control" *ngFor="let producto of productos" [value]="producto._id" >
+                        <option class="form-control"  *ngFor="let producto of productos"  [value]="producto._id">
+                            <ng-template [ngIf]="producto.estado != 'INACTIVO'">
                             {{producto.nombre}}
+                        </ng-template>
                         </option>
                     </select>
 
