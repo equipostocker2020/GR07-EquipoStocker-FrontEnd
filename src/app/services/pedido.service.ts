@@ -96,7 +96,8 @@ crearPedido (pedido: Pedido){
           console.log(err);
           console.log(err.error.errors.message);
           const errores = err.error.errors.message;
-          Swal.fire('Error al actualizar pedido', errores.substring(29), 'error');
+          Swal.fire('Error al actualizar pedido', errores.substring(0), 'error');
+          this.router.navigate(['/pedidos']);
           return err.throw(err);
         }));
   }
