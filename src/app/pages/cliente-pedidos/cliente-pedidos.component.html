@@ -44,77 +44,82 @@
     </nav>
 </section>
 <!-- <div class="container m-5"> -->
-    <section>
-       <!-- <div class="container py-4"> -->
-            <div class="row m-2">
-                <div class="col-md-12 py-4">
-                    <div class="row animated fadeIn">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-title">
-                                    <h3 class="text-center mt-2 subtitulo">Pedidos del cliente {{cliente.nombre}} </h3>
-                                    <hr>
-                                </div>
-                                <div class="card-body">
-                                    <div class="">
-                                        <h5 class="text-center mt-2 subtitulo">Pedidos Registrados (
-                                            <small>{{totalRegistros}}</small>)</h5>
-                                        </div>
-                                </div>
+<section>
+    <!-- <div class="container py-4"> -->
+    <div class="row m-2">
+        <div class="col-md-12 py-4">
+            <div class="row animated fadeIn">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-title">
+                            <h3 class="text-center mt-2 subtitulo">Pedidos del cliente {{cliente.nombre}} </h3>
+                            <hr>
+                        </div>
+                        <div class="card-body">
+                            <div class="">
+                                <h5 class="text-center mt-2 subtitulo">Pedidos Registrados (
+                                    <small>{{totalRegistros}}</small>)</h5>
                             </div>
                         </div>
                     </div>
-
-                    <div class="table-responsive table-bordered">
-                        <table class="table table-dark table-hover">
-                            <thead class="thead-dark">
-                                <tr class="text-center">
-                                    <th>Número de Pedido</th>
-                                    <th>Productos</th>
-                                    <th>Cantidad</th>
-                                    <th>Precio</th>
-                                    <th>Total</th>
-                                    <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE'">
-                                        Estado</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let pedido of pedidos">
-
-                                    <td class="text text-center">
-                                        {{pedido.numero_pedido}}
-                                    </td>
-                                    <td class="text text-center">
-                                        {{pedido.producto.nombre}}
-                                    </td>
-                                    <td class="text text-center">
-                                        {{pedido.cantidad}}
-                                    </td>
-                                    <td class="text text-center">
-                                        $ {{pedido.producto.precio}}
-                                    </td>
-                                    <td class="text text-center">
-                                        $ {{pedido.total}}
-                                    </td>
-
-                                    <td class="text text-center" *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">
-                                        {{pedido.estado}}
-                                    </td>
-                                </tr>
-                                
-                                
-                            </tbody>
-                        </table>
-                    
-                              
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
                 </div>
-            </div>    
-        <!-- </div> -->
-    </section>
+            </div>
+
+            <div class="table-responsive table-bordered">
+                <table class="table table-dark table-hover">
+                    <thead class="thead-dark">
+                        <tr class="text-center">
+                            <th>Número de Pedido</th>
+                            <th>Productos</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Total</th>
+                            <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE'">
+                                Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let pedido of pedidos">
+
+                            <td class="text text-center">
+                                {{pedido.numero_pedido}}
+                            </td>
+                            <td class="text text-center">
+                                {{pedido.producto.nombre}}
+                            </td>
+                            <td class="text text-center">
+                                {{pedido.cantidad}}
+                            </td>
+                            <td class="text text-center">
+                                $ {{pedido.producto.precio}}
+                            </td>
+                            <td class="text text-center">
+                                $ {{pedido.total}}
+                            </td>
+
+                            <td class="text text-center" *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">
+                                {{pedido.estado}}
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="form-group text-center m-t-20 mt-5">
+                <div class="col-xs-12">
+                    <button type="submit" routerLink="/clientes" class="btn btn-dark btn-lg btn-group text-uppercase waves-effect waves-light m-2">Volver</button>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+    <!-- </div> -->
+</section>
 <!-- </div> -->
