@@ -83,6 +83,7 @@
                             <th>Total</th>
                             <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE'">
                                 Estado</th>
+                            <th>Modificado por</th>
                             <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE'">
                                 Editar</th>
                         </tr>
@@ -122,6 +123,9 @@
                                         </select>
                             </td>
 
+                            <td class="text text-center">
+                                {{pedido.usuario.email}}
+                            </td>
 
                             <td *ngIf="(this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE') && (pedido.estado == 'enviado' || pedido.estado == 'preparación')">
                                 <button (click)="guardarStorage(token,pedido)" routerLink="/pedido/actualizarpedido" class="btn btn-success">
