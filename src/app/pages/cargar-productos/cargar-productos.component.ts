@@ -16,6 +16,7 @@ import { Usuario } from '../../models/usuario.models';
 export class CargarProductosComponent implements OnInit {
 
   forma: FormGroup;
+  aux: Proveedor[] = [];
   proveedores: Proveedor[] = [];
   producto: Producto;
   usuario: Usuario;
@@ -30,7 +31,15 @@ export class CargarProductosComponent implements OnInit {
   ngOnInit() {
     this._proveedorService.cargarProveedores()
       .subscribe((resp: any) => {
-        this.proveedores = resp.proveedor;
+        this.aux = resp.proveedor;
+        for(var i = 0; i < this.aux.length ; i++){
+          if(this.aux[i].estado == 'ACTIVO'){
+            this.proveedores[i] = this.aux[i];
+            console.log("Interaciones " ,this.proveedores)
+          }
+          console.log("Array resultante ",this.proveedores)
+        }
+        
         console.log(resp.proveedor);
       });
 
