@@ -19,42 +19,54 @@ import { Usuario } from '../../models/usuario.models';
 export class CargarPedidosComponent implements OnInit {
 
   forma: FormGroup;
+  auxProd: Producto[] = [];
+  auxCli: Cliente[] = [];
   productos: Producto[] = [];
   clientes: Cliente[] = [];
   pedido: Pedido;
   estado: String = "preparación";
-  total:number;
-  cantidad:number;
-  precio :number;
+  total: number;
+  cantidad: number;
+  precio: number;
   usuario: Usuario;
 
   constructor(
-    public _productoService : ProductoService,
-    public _pedidoService : PedidoService,
+    public _productoService: ProductoService,
+    public _pedidoService: PedidoService,
     public router: Router,
-    public _clienteService :ClienteService,
+    public _clienteService: ClienteService,
     public _usuarioService: UsuarioService
-    
+
   ) { }
 
   ngOnInit() {
     this._productoService.cargarProductos()
-            .subscribe((resp:any) =>{
-              this.productos = resp.productos;
-              console.log(resp.productos);
-            });
+      .subscribe((resp: any) => {
+        this.auxProd = resp.productos;
+        for (var i = 0; i < this.auxProd.length; i++) {
+          if (this.auxProd[i].estado == 'ACTIVO') {
+            this.productos[i] = this.auxProd[i];
+          }
+        }
+      });
+
+
     this._clienteService.cargarCliente()
-            .subscribe((resp:any) =>{
-              this.clientes = resp.clientes;
-              console.log(resp.clientes);
-            });
+      .subscribe((resp: any) => {
+        this.auxCli = resp.clientes;
+        for (var i = 0; i < this.auxCli.length; i++) {
+          if (this.auxCli[i].estado == 'ACTIVO') {
+            this.clientes[i] = this.auxCli[i];
+          }
+        }
+      });
 
     this.forma = new FormGroup({
-      cliente: new FormControl (null, Validators.required ),
-      producto: new FormControl(null, Validators.required ),
-      cantidad: new FormControl (null, Validators.required ),
+      cliente: new FormControl(null, Validators.required),
+      producto: new FormControl(null, Validators.required),
+      cantidad: new FormControl(null, Validators.required),
       usuario: new FormControl(null, Validators.required)
-    } );
+    });
 
     this.forma.setValue({
       cliente: '',
@@ -63,7 +75,7 @@ export class CargarPedidosComponent implements OnInit {
       usuario: this._usuarioService.usuario,
     });
   }
- 
+
   registrarPedido() {
     if (this.forma.invalid) {
       return;
@@ -74,7 +86,7 @@ export class CargarPedidosComponent implements OnInit {
       this.forma.value.producto,
       this.forma.value.cantidad,
       this.forma.value.usuario
-      
+
     );
     this._pedidoService.crearPedido(pedido)
       .subscribe(resp => {
@@ -89,13 +101,13 @@ export class CargarPedidosComponent implements OnInit {
     localStorage.removeItem('pedido');
   }
 
-  muestraPrecio(id : string){
-    this._productoService.cargarProductosPorID(id).subscribe((resp:any) =>{
-      this.precio  = resp.productos.precio;
+  muestraPrecio(id: string) {
+    this._productoService.cargarProductosPorID(id).subscribe((resp: any) => {
+      this.precio = resp.productos.precio;
     });
   }
 
-  muestraTotal(cantidad : number){
+  muestraTotal(cantidad: number) {
     this.total = cantidad * this.precio;
   }
 }

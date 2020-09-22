@@ -35,12 +35,8 @@ export class CargarProductosComponent implements OnInit {
         for(var i = 0; i < this.aux.length ; i++){
           if(this.aux[i].estado == 'ACTIVO'){
             this.proveedores[i] = this.aux[i];
-            console.log("Interaciones " ,this.proveedores)
           }
-          console.log("Array resultante ",this.proveedores)
         }
-        
-        console.log(resp.proveedor);
       });
 
     this.forma = new FormGroup({

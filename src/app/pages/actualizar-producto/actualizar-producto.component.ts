@@ -20,6 +20,7 @@ export class ActualizarProductoComponent implements OnInit {
   token: string;
   producto: Producto;
   id: string;
+  aux: Proveedor[] = [];
   proveedores: Proveedor[] = [];
   imagenSubir: File;
   imagenTemp: string | ArrayBuffer;
@@ -41,7 +42,12 @@ export class ActualizarProductoComponent implements OnInit {
   ngOnInit(): void {
     this._proveedorService.cargarProveedores()
       .subscribe((resp: any) => {
-        this.proveedores = resp.proveedor;
+        this.aux = resp.proveedor;
+        for(var i = 0; i < this.aux.length ; i++){
+          if(this.aux[i].estado == 'ACTIVO'){
+            this.proveedores[i] = this.aux[i];
+          }
+        }
       });
   }
 

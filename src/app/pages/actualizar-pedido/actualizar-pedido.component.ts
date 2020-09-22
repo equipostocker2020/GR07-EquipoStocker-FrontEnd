@@ -19,14 +19,16 @@ import { PedidosComponent } from '../pedidos/pedidos.component';
 export class ActualizarPedidoComponent implements OnInit {
 
   token: string;
-  cantidad2:number;
+  cantidad2: number;
   pedido: Pedido;
-  productos: Producto [] = [];
-  clientes: Cliente [] = [];
+  auxProd: Producto[] = [];
+  auxCli: Cliente[] = [];
+  productos: Producto[] = [];
+  clientes: Cliente[] = [];
   id: string;
   usuario: Usuario;
-  precio:any;
-  total:any;
+  precio: any;
+  total: any;
 
   constructor(
     public _pedidoService: PedidoService,
@@ -44,21 +46,31 @@ export class ActualizarPedidoComponent implements OnInit {
 
   ngOnInit(): void {
     this._productoService.cargarProductos()
-    .subscribe((resp: any) => {
-      this.productos = resp.productos;
-    });
+      .subscribe((resp: any) => {
+        this.auxProd = resp.productos;
+        for (var i = 0; i < this.auxProd.length; i++) {
+          if (this.auxProd[i].estado == 'ACTIVO') {
+            this.productos[i] = this.auxProd[i];
+          }
+        }
+      });
 
     this._clienteService.cargarCliente()
-    .subscribe((resp: any) => {
-      this.clientes = resp.clientes;
-    });
+      .subscribe((resp: any) => {
+        this.auxCli = resp.clientes;
+        for (var i = 0; i < this.auxCli.length; i++) {
+          if (this.auxCli[i].estado == 'ACTIVO') {
+            this.clientes[i] = this.auxCli[i];
+          }
+        }
+      });
 
     this._pedidoService.cargarPedidoID(this.pedido)
-    .subscribe((resp: any) => {
-      this.cantidad2 = resp.pedido.cantidad;
-      console.log(this.cantidad2)
-    });
-   }
+      .subscribe((resp: any) => {
+        this.cantidad2 = resp.pedido.cantidad;
+        console.log(this.cantidad2)
+      });
+  }
 
   cargarStorage() {
     if (localStorage.getItem('token')) {
@@ -83,8 +95,8 @@ export class ActualizarPedidoComponent implements OnInit {
   guardar(pedido: Pedido) {
     this.pedido.cliente = pedido.cliente;
     this.pedido.producto = pedido.producto;
-    console.log(pedido.cantidad)    
-    this.pedido.cantidad = pedido.cantidad;    
+    console.log(pedido.cantidad)
+    this.pedido.cantidad = pedido.cantidad;
     this.pedido.usuario = this._usuarioService.usuario;
     this._usuarioService.token = this.token;
     this._pedidoService.actualizarPedido(this.pedido)
@@ -102,16 +114,16 @@ export class ActualizarPedidoComponent implements OnInit {
 
   instanciarCantidad
 
-  muestraPrecio(id : string){
-    this._productoService.cargarProductosPorID(id).subscribe((resp:any) =>{
-      this.precio  = resp.productos.precio;
-      console.log(this.cantidad2 +" "+ this.precio)
+  muestraPrecio(id: string) {
+    this._productoService.cargarProductosPorID(id).subscribe((resp: any) => {
+      this.precio = resp.productos.precio;
+      console.log(this.cantidad2 + " " + this.precio)
       this.total = this.cantidad2 * this.precio;
     });
-    
+
   }
 
-  muestraTotal(cantidad : number){
+  muestraTotal(cantidad: number) {
     this.cantidad2 = cantidad;
     this.total = cantidad * this.precio;
   }
