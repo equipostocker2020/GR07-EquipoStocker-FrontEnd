@@ -115,20 +115,20 @@ export class PedidosComponent implements OnInit {
   
       Swal.fire({
         title: ' Esta seguro?',
-        icon: 'warning',
         text: ' Esta a punto de cancelar el pedido  N°' + pedido.numero_pedido,
+        icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6'
       })
       .then(cambiar => {
-  
         if ( cambiar.value){
-  
           this._pedidoService.actualizarPedido(pedido)
           .subscribe ((resp: any) => {
+            this.cargarPedido();
           });
         }
       });
+      this.cargarPedido();
     }else{
       this._pedidoService.actualizarPedido(pedido)
       .subscribe ((resp: any) => {
