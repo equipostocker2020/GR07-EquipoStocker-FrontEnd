@@ -87,7 +87,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="container text-center">
+                        <div class="container text-center" *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">
                             <button routerLink="/productos/cargarproductos" class="btn btn-dark btn-lg btn-block text-uppercase">
                                 Agregar Mas..
                             </button>
@@ -120,7 +120,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="container text-center">
+                        <div class="container text-center" *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'DEPOSIT_ROLE' ">
                             <button routerLink="/proveedores/cargarproveedor" class="btn btn-dark btn-lg btn-block text-uppercase">
                                 Agregar Mas..
                             </button>
@@ -152,7 +152,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="container text-center">
+                            <div class="container text-center" *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' ">
                                 <button routerLink="/clientes/cargarcliente" class="btn btn-dark btn-lg btn-block text-uppercase">
                                     Agregar Mas..
                                 </button>
@@ -179,14 +179,15 @@
                                     <tbody>
                                         <tr *ngFor="let pedido of pedidos">
                                             <td class="text">{{pedido.numero_pedido}}</td>
-                                            <td class="text">$ {{pedido.cliente.nombre}}</td>
+                                            <td class="text">{{pedido.cliente.nombre}}</td>
                                             <td class="text">{{pedido.producto.nombre}}</td>
-                                            <td>{{pedido.total}}</td>
+                                            <td class="text">{{pedido.cantidad}}</td>
+                                            <td class="text">$ {{pedido.total}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="container text-center">
+                            <div class="container text-center" *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' ">
                                 <button routerLink="/pedidos/cargarpedido" class="btn btn-dark btn-lg btn-block text-uppercase">
                                     Agregar Mas..
                                 </button>

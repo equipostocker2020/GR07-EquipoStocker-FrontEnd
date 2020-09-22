@@ -83,7 +83,7 @@
                             <!-- <th>DNI</th> -->
                             <th class="text">Modificado por</th>
                             <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' ">Estado</th>
-                            <th>Ver Pedidos</th>
+                            <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' ">Ver Pedidos</th>
                             <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' " class="text">Editar</th>
                         </tr>
                     </thead>
@@ -123,7 +123,7 @@
                                       </select>
                             </td>
 
-                            <td class="text text-center">
+                            <td class="text text-center" *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE' || this._usuarioService.usuario.role == 'SALES_ROLE' ">
                                 <div class="col text">
                                     <a class="btn btn-outline-primary " (click)="compruebaPedido(token,cliente)">Ver Pedidos</a>
                                 </div>
