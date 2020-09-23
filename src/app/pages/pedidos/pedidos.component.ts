@@ -83,13 +83,13 @@ export class PedidosComponent implements OnInit {
 
   buscarPedido(termino:string){
 
-    if(termino.length<=0){
+    if (termino.length <= 0){
       this.cargarPedido();
       return;
     }
     this.cargando = true;
     this._pedidoService.buscarPedido(termino)
-            .subscribe((pedidos : Pedido [])=>{
+            .subscribe((pedidos: Pedido []) => {
               this.pedidos = pedidos;
               this.cargando = false;
             });

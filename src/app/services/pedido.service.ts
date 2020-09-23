@@ -122,7 +122,6 @@ crearPedido (pedido: Pedido){
 
   buscarPedido(termino: string){
     const url = URL_SERVICIOS + '/busqueda/coleccion/pedido/' + termino;
-
     return this.http.get(url)
           .map((resp: any) => resp.pedido);
   }

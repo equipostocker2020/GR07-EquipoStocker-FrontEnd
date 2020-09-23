@@ -88,6 +88,6 @@ export class ProductoService {
   buscarProductos(termino: string) {
     const url = URL_SERVICIOS + '/busqueda/coleccion/productos/' + termino;
     return this.http.get(url)
-      .map((resp: any) => resp.productos);
+        .map((resp: any) => resp.productos);
   }
 }

@@ -29,6 +29,7 @@ import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { CargarPedidosComponent } from './pages/cargar-pedidos/cargar-pedidos.component';
 import { ActualizarPedidoComponent } from './pages/actualizar-pedido/actualizar-pedido.component';
 import { ClientePedidosComponent } from './pages/cliente-pedidos/cliente-pedidos.component';
+import { CargarUsuariosComponent } from './pages/cargar-usuarios/cargar-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ClientePedidosComponent } from './pages/cliente-pedidos/cliente-pedidos
     CargarPedidosComponent,
     ActualizarPedidoComponent,
     ClientePedidosComponent,
+    CargarUsuariosComponent,
   ],
   imports: [
     BrowserModule,

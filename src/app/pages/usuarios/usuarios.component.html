@@ -61,7 +61,7 @@
                             </div>
                             <div class="col text-center">
                                 <input #input (keyup)="buscarUsuario(input.value)" type="text" class="form-control mt-4" placeholder="Buscar Usuario...">
-                                <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE'" routerLink="/register" class="btn btn-dark btn-small align-center buttoncontent mt-2 ">
+                                <button *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE'" routerLink="/usuario/cargarusuario" class="btn btn-dark btn-small align-center buttoncontent mt-2 ">
                                             <fa-icon [icon]="faPlus"></fa-icon>
                                             Nuevo Usuario
                                         </button>
