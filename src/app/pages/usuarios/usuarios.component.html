@@ -82,6 +82,7 @@
                             <th class="text">DNI</th>
                             <th class="text">CUIT</th>
                             <th class="text">Direccion</th>
+                            <th class="text">Creado por</th>
                             <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE'" class="text">Rol del usuario</th>
                             <th *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE'" class="text">Editar/Eliminar</th>
                         </tr>
@@ -110,6 +111,9 @@
                             </td>
                             <td class="text text-center">
                                 {{usuario.direccion}}
+                            </td>
+                            <td class="text text-center">
+                                {{usuario.usuario}}
                             </td>
                             <td class="w200" *ngIf="this._usuarioService.usuario.role == 'ADMIN_ROLE'">
                                 <select [(ngModel)]="usuario.role" name="role" class="form-control w140" (change)="cambiarRole( usuario)">

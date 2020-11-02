@@ -21,6 +21,7 @@ export class Usuario {
         public img?: string,
         public role?: string,
         public _id?: string,
+        public usuario?: string,
     ) { }
 
     get imagenUrls() {
