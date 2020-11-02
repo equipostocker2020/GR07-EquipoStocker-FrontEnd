@@ -85,12 +85,6 @@ export class UsuarioService {
     }
   }
   /**
-   * Valida que exista un token
-   */
-  estaLogueado() {
-    return (this.token.length > 5) ? true : false;
-  }
-  /**
    *
    * @param usuario
    * @param recordar
