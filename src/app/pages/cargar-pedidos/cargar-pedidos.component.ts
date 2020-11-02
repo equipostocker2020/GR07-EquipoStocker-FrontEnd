@@ -40,6 +40,7 @@ export class CargarPedidosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
     this._productoService.cargarProductos()
       .subscribe((resp: any) => {
         this.auxProd = resp.productos;

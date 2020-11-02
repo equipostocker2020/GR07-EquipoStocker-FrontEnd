@@ -9,7 +9,6 @@ import { FileUploadService } from 'src/app/services/file-upload.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { Pedido } from 'src/app/models/pedido.models';
-import { PedidosComponent } from '../pedidos/pedidos.component';
 
 @Component({
   selector: 'app-actualizar-pedido',
@@ -111,8 +110,6 @@ export class ActualizarPedidoComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
   }
-
-  instanciarCantidad
 
   muestraPrecio(id: string) {
     this._productoService.cargarProductosPorID(id).subscribe((resp: any) => {
